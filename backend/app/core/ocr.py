@@ -5,8 +5,14 @@ from pdf2image import convert_from_path
 import fitz  # PyMuPDF
 from app.utils.logger import logger
 import tempfile
+from typing import Tuple
 
-async def perform_ocr(file_path: str) -> tuple:
+# Named constants
+MIN_CHARS_REQUIRED = 200
+MIN_NON_WHITESPACE_REQUIRED = 100
+MIN_LINES_REQUIRED = 5
+
+async def perform_ocr(file_path: str) -> Tuple[bool, str]:
     """
     Check if the PDF needs OCR and perform it if necessary.
     Returns a tuple (is_scanned, text_content).
@@ -39,15 +45,18 @@ async def perform_ocr(file_path: str) -> tuple:
         if non_whitespace_count < 50:  # Very little actual content
             logger.warning(f"Very little content extracted, likely a scanned document or has text extraction limitations")
         
-        # Enhanced check for meaningful content 
-        min_chars_required = 200  # Increased threshold
-        min_non_whitespace_required = 100  # New threshold for non-whitespace
-        min_lines_required = 5  # New threshold for number of lines
+        # Check for non-ASCII noise
+        non_ascii_ratio = sum(1 for c in text_content if ord(c) > 126) / max(1, len(text_content))
+        if non_ascii_ratio > 0.3:
+            logger.warning("Text appears to contain mostly non-ASCII characters. Triggering OCR fallback.")
+            ocr_text = perform_full_ocr(file_path)
+            return True, ocr_text
         
+        # Enhanced check for meaningful content 
         has_meaningful_content = (
-            char_count > min_chars_required and 
-            non_whitespace_count > min_non_whitespace_required and
-            lines_count > min_lines_required
+            char_count > MIN_CHARS_REQUIRED and 
+            non_whitespace_count > MIN_NON_WHITESPACE_REQUIRED and
+            lines_count > MIN_LINES_REQUIRED
         )
         
         if has_meaningful_content:
@@ -147,7 +156,12 @@ def perform_full_ocr(file_path: str) -> str:
             
             try:
                 # Convert PDF to images with higher DPI
-                images = convert_from_path(file_path, dpi=dpi)
+                try:
+                    images = convert_from_path(file_path, dpi=dpi)
+                except Exception:
+                    logger.warning("Retrying convert_from_path at 200 DPI")
+                    images = convert_from_path(file_path, dpi=200)
+                    
                 logger.info(f"Successfully converted PDF to {len(images)} images")
             except Exception as e:
                 logger.error(f"PDF to image conversion failed: {str(e)}")
@@ -159,15 +173,11 @@ def perform_full_ocr(file_path: str) -> str:
             
             for i, image in enumerate(images):
                 try:
-                    # Save the image temporarily
-                    image_path = os.path.join(temp_dir, f"page_{i}.png")
-                    image.save(image_path, "PNG")
-                    
                     # Log image dimensions for debugging
                     logger.info(f"Page {i+1} image dimensions: {image.width}x{image.height}")
                     
-                    # Try OCR with different configurations if needed
-                    page_text = pytesseract.image_to_string(image_path)
+                    # Perform OCR directly on the image in memory
+                    page_text = pytesseract.image_to_string(image)
                     
                     # Check if OCR returned sufficient text
                     non_ws_count = len(re.sub(r'\s', '', page_text))
@@ -184,7 +194,7 @@ def perform_full_ocr(file_path: str) -> str:
                     if non_ws_count < 20 and i < 5:  # Only retry for first few pages to save time
                         logger.warning(f"OCR returned minimal text for page {i+1}, trying alternate config")
                         alt_config = "--psm 1 --oem 1"  # Automatic page segmentation with LSTM OCR
-                        page_text = pytesseract.image_to_string(image_path, config=alt_config)
+                        page_text = pytesseract.image_to_string(image, config=alt_config)
                         
                         # Update stats after retry
                         non_ws_count = len(re.sub(r'\s', '', page_text))
@@ -208,6 +218,5 @@ def perform_full_ocr(file_path: str) -> str:
     
     except Exception as e:
         logger.error(f"Error performing OCR: {str(e)}")
-        # Return minimal content rather than raising - allows downstream processing to continue
-        return "\n--- OCR FAILED - SEE LOGS ---\n"
-        
+        # Return empty string instead of error message
+        return ""
