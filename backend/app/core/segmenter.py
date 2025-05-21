@@ -5,6 +5,7 @@ import json
 import os
 from app.utils.logger import logger
 from app.core.advanced_chunker import chunk_lease
+from app.utils.risk_analysis.enums import ClauseCategory
 
 def segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[str, Any]]:
     """
@@ -25,7 +26,8 @@ def segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[str, An
             "content": text_content,
             "page_start": None,
             "page_end": None,
-            "error": "Insufficient text content for segmentation"
+            "error": "Insufficient text content for segmentation",
+            "clause_confidence": "low"
         }]
     
     # Create debug directory
@@ -67,7 +69,8 @@ def segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[str, An
                 "token_estimate": chunk.get("token_estimate"),
                 "is_table": chunk.get("is_table", False),
                 "parent_heading": chunk.get("parent_heading"),
-                "source_excerpt": chunk.get("source_excerpt", "")
+                "source_excerpt": chunk.get("source_excerpt", ""),
+                "clause_confidence": chunk.get("confidence", "high")
             }
             
             segments.append(segment)
@@ -167,7 +170,8 @@ def legacy_segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[
             "content": text_content,
             "page_start": 1 if pages else None,
             "page_end": len(pages) if pages else None,
-            "segmentation_error": "No sections detected"
+            "segmentation_error": "No sections detected",
+            "clause_confidence": "low"
         })
         return segments
     
@@ -200,7 +204,8 @@ def legacy_segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[
             "match_text": current["match_text"],
             "char_count": len(content),
             "non_ws_count": len(re.sub(r'\s', '', content)),
-            "line_count": len(content.splitlines()) if content else 0
+            "line_count": len(content.splitlines()) if content else 0,
+            "clause_confidence": "medium"
         })
     
     # Check if the document start is missing
@@ -216,7 +221,8 @@ def legacy_segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[
                 "match_text": "",
                 "char_count": len(preamble_content),
                 "non_ws_count": len(re.sub(r'\s', '', preamble_content)),
-                "line_count": len(preamble_content.splitlines()) if preamble_content else 0
+                "line_count": len(preamble_content.splitlines()) if preamble_content else 0,
+                "clause_confidence": "medium"
             })
     
     return segments
@@ -338,6 +344,56 @@ def check_for_common_headings(text: str) -> List[str]:
     return found_headings
 
 
+def classify_section_heading(heading_text: str, lease_type: LeaseType) -> str:
+    """
+    Classifies a section heading based on keywords into a known clause category.
+    Returns the ClauseCategory.value string if a match is found, else 'miscellaneous'.
+    """
+    heading = heading_text.lower()
+
+    section_map = {
+        ClauseCategory.PREMISES.value: ["premises", "demised", "leased space", "property"],
+        ClauseCategory.TERM.value: ["term", "duration", "commencement", "expiration"],
+        ClauseCategory.RENT.value: ["rent", "payment", "base rent", "minimum rent", "annual rent"],
+        ClauseCategory.MAINTENANCE.value: ["maintenance", "repair", "condition"],
+        ClauseCategory.USE.value: ["use", "purpose", "permitted", "conduct"],
+        ClauseCategory.ASSIGNMENT.value: ["assignment", "sublet", "transfer"],
+        ClauseCategory.INSURANCE.value: ["insurance", "liability", "indemnity"],
+        ClauseCategory.CASUALTY.value: ["casualty", "damage", "destruction"],
+        ClauseCategory.DEFAULT.value: ["default", "remedies", "breach"],
+        ClauseCategory.ENTRY.value: ["entry", "access"],
+        ClauseCategory.NOTICES.value: ["notice", "notices"],
+        ClauseCategory.QUIET_ENJOYMENT.value: ["quiet enjoyment", "peaceful"],
+        ClauseCategory.TERMINATION.value: ["termination", "cancel", "early termination"],
+        ClauseCategory.UTILITIES.value: ["utilities", "electric", "water", "gas"],
+    }
+
+    if lease_type == LeaseType.RETAIL:
+        section_map.update({
+            ClauseCategory.CO_TENANCY.value: ["co-tenancy", "cotenancy"],
+            ClauseCategory.PERCENTAGE_RENT.value: ["percentage", "overage", "gross sales"],
+            ClauseCategory.OPERATING_HOURS.value: ["hours", "operation"],
+            ClauseCategory.COMMON_AREA.value: ["cam", "common area", "shared area"]
+        })
+    elif lease_type == LeaseType.OFFICE:
+        section_map.update({
+            ClauseCategory.BUILDING_SERVICES.value: ["building services", "janitorial", "hvac"],
+            ClauseCategory.TENANT_IMPROVEMENTS.value: ["tenant improvements", "improvements", "build-out"],
+            ClauseCategory.OPERATING_EXPENSES.value: ["opex", "operating expenses"]
+        })
+    elif lease_type == LeaseType.INDUSTRIAL:
+        section_map.update({
+            ClauseCategory.ENVIRONMENTAL.value: ["environmental", "compliance"],
+            ClauseCategory.HAZARDOUS_MATERIALS.value: ["hazardous", "hazmat", "hazardous materials"]
+        })
+
+    for category, keywords in section_map.items():
+        if any(keyword in heading for keyword in keywords):
+            return category
+
+    return "miscellaneous"
+
+
 def fallback_segmentation(text_content: str, lease_type: LeaseType) -> List[Dict[str, Any]]:
     """Attempt fallback segmentation when standard method fails"""
     logger.info("Attempting fallback segmentation with simpler patterns")
@@ -370,8 +426,8 @@ def fallback_segmentation(text_content: str, lease_type: LeaseType) -> List[Dict
             if len(content) < 50:
                 continue
                 
-            # Guess section type based on heading text
-            section_name = guess_section_name(heading_text, lease_type)
+            # Classify section type based on heading text
+            section_name = classify_section_heading(heading_text, lease_type)
             
             segments.append({
                 "section_name": section_name,
@@ -382,7 +438,8 @@ def fallback_segmentation(text_content: str, lease_type: LeaseType) -> List[Dict
                 "char_count": len(content),
                 "non_ws_count": len(re.sub(r'\s', '', content)),
                 "line_count": len(content.splitlines()),
-                "fallback_method": "all_caps_headings"
+                "fallback_method": "all_caps_headings",
+                "clause_confidence": "fallback"
             })
             
         return segments
@@ -432,7 +489,8 @@ def fallback_segmentation(text_content: str, lease_type: LeaseType) -> List[Dict
                     "char_count": len(section_content),
                     "non_ws_count": len(re.sub(r'\s', '', section_content)),
                     "line_count": len(section_content.splitlines()),
-                    "fallback_method": "numbered_paragraphs"
+                    "fallback_method": "numbered_paragraphs",
+                    "clause_confidence": "fallback"
                 })
                 
                 # Reset for new section
@@ -440,8 +498,8 @@ def fallback_segmentation(text_content: str, lease_type: LeaseType) -> List[Dict
             
             # Add content to current section
             if is_new_section:
-                # Guess section name from paragraph text
-                current_section = guess_section_name(para_text, lease_type)
+                # Classify section name from paragraph text
+                current_section = classify_section_heading(para_text, lease_type)
                 section_start = match.start()
             
             # Get content until next paragraph or end
@@ -463,58 +521,14 @@ def fallback_segmentation(text_content: str, lease_type: LeaseType) -> List[Dict
                 "char_count": len(section_content),
                 "non_ws_count": len(re.sub(r'\s', '', section_content)),
                 "line_count": len(section_content.splitlines()),
-                "fallback_method": "numbered_paragraphs"
+                "fallback_method": "numbered_paragraphs",
+                "clause_confidence": "fallback"
             })
         
         return segments
     
     # If all fallback methods failed
     return []
-
-
-def guess_section_name(heading_text: str, lease_type: LeaseType) -> str:
-    """Guess the section name based on heading text"""
-    heading_lower = heading_text.lower()
-    
-    # Map of keywords to section names
-    section_map = {
-        "premises": ["premises", "demised", "leased space", "property"],
-        "term": ["term", "duration", "commencement", "expiration"],
-        "rent": ["rent", "payment", "base rent", "minimum rent", "annual rent", "monthly rent"],
-        "additional_charges": ["additional rent", "cam", "common area", "tax", "expense", "charges"],
-        "maintenance": ["maintenance", "repair", "condition"],
-        "use": ["use", "purpose", "permitted", "conduct"],
-        "assignment": ["assignment", "sublet", "transfer"],
-        "insurance": ["insurance", "liability", "indemnity"],
-        "casualty": ["casualty", "damage", "destruction"],
-        "default": ["default", "remedies", "termination", "breach"],
-        "entry": ["entry", "access"],
-        "miscellaneous": ["miscellaneous", "general", "other", "notices"]
-    }
-    
-    # Additional sections for retail
-    if lease_type == LeaseType.RETAIL:
-        section_map.update({
-            "co_tenancy": ["co-tenancy", "cotenancy"],
-            "percentage_rent": ["percentage", "overage", "gross sales"],
-            "operating_hours": ["hours", "operation"]
-        })
-    
-    # Match heading to a section
-    for section_name, keywords in section_map.items():
-        for keyword in keywords:
-            if keyword in heading_lower:
-                return section_name
-    
-    # If no match, return "misc" with partial heading
-    words = heading_lower.split()
-    if words:
-        short_heading = words[0]
-        if len(words) > 1 and len(short_heading) < 4:  # For short first words like "of" or "and"
-            short_heading += "_" + words[1]
-        return f"misc_{short_heading}"
-    
-    return "misc_section"
 
 
 def get_section_patterns(lease_type: LeaseType) -> Dict[str, List[str]]:
