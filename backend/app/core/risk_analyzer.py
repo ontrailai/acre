@@ -1,25 +1,57 @@
-from typing import Dict, List, Any, Tuple
+from typing import Dict, List, Any, Tuple, Optional, Set
 from app.schemas import LeaseType, ClauseExtraction, RiskLevel, RiskFlag
 from app.utils.logger import logger
+from app.utils.risk_analysis.enums import ClauseCategory
+from app.utils.risk_analysis.clause_catalog import get_essential_clauses
 import re
+import json
+import os
+from datetime import datetime
 
-def analyze_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -> Tuple[List[RiskFlag], List[str]]:
+# Constants
+MIN_CLAUSE_CONFIDENCE_THRESHOLD = 0.4
+ANALYSIS_LOG_DIR = os.path.join("app", "storage", "logs", "risk_analysis")
+
+# Create log directory
+os.makedirs(ANALYSIS_LOG_DIR, exist_ok=True)
+
+def analyze_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -> Tuple[List[RiskFlag], List[Dict]]:
     """
     Analyze lease clauses for potential risks.
+    
+    Args:
+        clauses: Dictionary of extracted lease clauses
+        lease_type: Type of the lease (RETAIL, OFFICE, INDUSTRIAL)
+        
     Returns:
-    - A list of risk flags with details
-    - A list of missing clauses
+        - A list of risk flags with details
+        - A list of missing clauses metadata
     """
     try:
         # Initialize results
         risk_flags = []
-        missing_clauses = []
+        clause_analysis_logs = []
         
         # Check for missing essential clauses
         missing_clauses = check_missing_essential_clauses(clauses, lease_type)
         
+        # Log missing clauses for debugging
+        log_missing_clauses(missing_clauses, lease_type)
+        
         # Analyze existing clauses for risks
         for key, clause in clauses.items():
+            # Skip low confidence clauses
+            if hasattr(clause, 'confidence') and clause.confidence < MIN_CLAUSE_CONFIDENCE_THRESHOLD:
+                clause_analysis_logs.append({
+                    "clause_key": key,
+                    "confidence": getattr(clause, 'confidence', None),
+                    "matched_heuristics": [],
+                    "skipped": True,
+                    "reason": f"Low confidence: {getattr(clause, 'confidence', 'unknown')}"
+                })
+                logger.info(f"Skipping risk analysis for low-confidence clause: {key}")
+                continue
+            
             # First, check for risks already identified in GPT extraction
             if clause.risk_tags:
                 for risk in clause.risk_tags:
@@ -32,28 +64,62 @@ def analyze_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -
                         related_text=clause.raw_excerpt[:100] + "..." if len(clause.raw_excerpt) > 100 else clause.raw_excerpt,
                         page_number=clause.page_number
                     ))
+                    
+                    # Add to analysis log
+                    if not any(log["clause_key"] == key for log in clause_analysis_logs):
+                        clause_analysis_logs.append({
+                            "clause_key": key,
+                            "confidence": getattr(clause, 'confidence', None),
+                            "matched_heuristics": ["gpt_risk_tags"],
+                            "skipped": False
+                        })
             
             # Then, perform additional risk analysis based on specialized checks
-            additional_risks = analyze_clause_risks(key, clause, lease_type)
+            additional_risks, matched_heuristics = analyze_clause_risks(key, clause, lease_type)
             risk_flags.extend(additional_risks)
+            
+            # Update analysis log
+            current_log = next((log for log in clause_analysis_logs if log["clause_key"] == key), None)
+            if current_log:
+                current_log["matched_heuristics"].extend(matched_heuristics)
+            else:
+                clause_analysis_logs.append({
+                    "clause_key": key,
+                    "confidence": getattr(clause, 'confidence', None),
+                    "matched_heuristics": matched_heuristics,
+                    "skipped": False
+                })
         
         # Add lease-type specific risk analysis
         if lease_type == LeaseType.RETAIL:
-            retail_risks = analyze_retail_specific_risks(clauses)
+            retail_risks, retail_heuristics = analyze_retail_specific_risks(clauses)
             risk_flags.extend(retail_risks)
+            # Update logs with retail heuristics
+            update_analysis_logs(clause_analysis_logs, retail_heuristics)
+            
         elif lease_type == LeaseType.OFFICE:
-            office_risks = analyze_office_specific_risks(clauses)
+            office_risks, office_heuristics = analyze_office_specific_risks(clauses)
             risk_flags.extend(office_risks)
+            # Update logs with office heuristics
+            update_analysis_logs(clause_analysis_logs, office_heuristics)
+            
         elif lease_type == LeaseType.INDUSTRIAL:
-            industrial_risks = analyze_industrial_specific_risks(clauses)
+            industrial_risks, industrial_heuristics = analyze_industrial_specific_risks(clauses)
             risk_flags.extend(industrial_risks)
+            # Update logs with industrial heuristics
+            update_analysis_logs(clause_analysis_logs, industrial_heuristics)
         
         # Check for cross-clause risks (issues that span multiple clauses)
-        cross_clause_risks = analyze_cross_clause_risks(clauses, lease_type)
+        cross_clause_risks, cross_heuristics = analyze_cross_clause_risks(clauses, lease_type)
         risk_flags.extend(cross_clause_risks)
+        # Update logs with cross-clause heuristics
+        update_analysis_logs(clause_analysis_logs, cross_heuristics)
         
         # De-duplicate risk flags
         risk_flags = deduplicate_risks(risk_flags)
+        
+        # Save analysis logs
+        save_analysis_logs(clause_analysis_logs, lease_type)
         
         logger.info(f"Risk analysis complete. Found {len(risk_flags)} risks and {len(missing_clauses)} missing clauses")
         return risk_flags, missing_clauses
@@ -63,41 +129,49 @@ def analyze_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -
         return [], []
 
 
-def check_missing_essential_clauses(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -> List[str]:
-    """Check for missing essential clauses based on lease type"""
-    # Define essential clauses for all lease types
-    essential_clauses = {
-        "premises": ["premises", "leased_premises", "demised_premises"],
-        "term": ["term", "commencement", "expiration", "lease_term"],
-        "rent": ["rent", "payment", "base_rent", "minimum_rent"],
-        "maintenance": ["maintenance", "repair", "alteration"],
-        "use": ["use", "permitted_use", "prohibited_use"],
-        "assignment": ["assignment", "sublet", "transfer", "subletting"],
-        "insurance": ["insurance", "liability", "indemnity", "indemnification"],
-        "default": ["default", "remedies", "events_of_default"]
-    }
+def update_analysis_logs(analysis_logs: List[Dict], heuristics_by_clause: Dict[str, List[str]]):
+    """Update analysis logs with new heuristics"""
+    for clause_key, heuristics in heuristics_by_clause.items():
+        current_log = next((log for log in analysis_logs if log["clause_key"] == clause_key), None)
+        if current_log:
+            current_log["matched_heuristics"].extend(heuristics)
+        else:
+            analysis_logs.append({
+                "clause_key": clause_key,
+                "confidence": None,  # Unknown confidence for cross-clause analysis
+                "matched_heuristics": heuristics,
+                "skipped": False
+            })
+
+
+def save_analysis_logs(analysis_logs: List[Dict], lease_type: LeaseType):
+    """Save analysis logs to file"""
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_path = os.path.join(ANALYSIS_LOG_DIR, f"clause_analysis_{lease_type.value}_{timestamp}.json")
     
-    # Add lease-type specific essential clauses
-    if lease_type == LeaseType.RETAIL:
-        essential_clauses.update({
-            "operating_hours": ["operating_hours", "hours_of_operation", "business_hours"],
-            "common_area": ["cam", "common_area", "common_area_maintenance", "operating_expenses"],
-            "percentage_rent": ["percentage_rent", "overage_rent"]
-        })
-    elif lease_type == LeaseType.OFFICE:
-        essential_clauses.update({
-            "building_services": ["building_services", "services"],
-            "operating_expenses": ["operating_expenses", "opex", "expenses"],
-            "tenant_improvements": ["improvements", "tenant_improvements", "allowance"]
-        })
-    elif lease_type == LeaseType.INDUSTRIAL:
-        essential_clauses.update({
-            "environmental": ["environmental", "compliance", "environmental_compliance"],
-            "hazardous_materials": ["hazardous", "hazmat", "hazardous_materials"]
-        })
+    with open(log_path, "w") as f:
+        json.dump(analysis_logs, f, indent=2)
+    
+    logger.info(f"Saved clause analysis logs to {log_path}")
+
+
+def check_missing_essential_clauses(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -> List[Dict]:
+    """
+    Check for missing essential clauses based on lease type.
+    
+    Args:
+        clauses: Dictionary of extracted lease clauses
+        lease_type: Type of lease
+        
+    Returns:
+        List of dictionaries with missing clause metadata
+    """
+    # Get essential clauses for this lease type
+    essential_clauses = get_essential_clauses(lease_type)
     
     # Check for missing clauses
     missing = []
+    
     for category, keywords in essential_clauses.items():
         found = False
         
@@ -123,14 +197,49 @@ def check_missing_essential_clauses(clauses: Dict[str, ClauseExtraction], lease_
                         break
                     
         if not found:
-            missing.append(category.replace("_", " ").title())
+            missing.append({
+                "category": category.replace("_", " ").title(),
+                "required_keywords": keywords,
+                "match_found": False
+            })
     
     return missing
 
 
-def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseType) -> List[RiskFlag]:
-    """Analyze a single clause for potential risks"""
+def log_missing_clauses(missing_clauses: List[Dict], lease_type: LeaseType):
+    """Log missing clauses to file for debugging"""
+    if not missing_clauses:
+        return
+        
+    # Create debug directory
+    debug_dir = os.path.join("app", "storage", "debug")
+    os.makedirs(debug_dir, exist_ok=True)
+    
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    debug_path = os.path.join(debug_dir, f"missing_clause_debug_{lease_type.value}_{timestamp}.json")
+    
+    with open(debug_path, "w", encoding="utf-8") as f:
+        json.dump(missing_clauses, f, indent=2)
+        
+    logger.info(f"Logged missing clause debug data to {debug_path}")
+
+
+def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseType) -> Tuple[List[RiskFlag], List[str]]:
+    """
+    Analyze a single clause for potential risks.
+    
+    Args:
+        key: Clause key
+        clause: Extracted clause data
+        lease_type: Type of lease
+        
+    Returns:
+        Tuple of:
+        - List of risk flags identified
+        - List of matched heuristic names for logging
+    """
     risks = []
+    matched_heuristics = []
     
     # Extract text for analysis
     text = clause.content.lower() + " " + clause.raw_excerpt.lower()
@@ -138,8 +247,8 @@ def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseTy
     # Assignment clause risks
     if any(term in key.lower() for term in ["assignment", "sublet", "transfer"]):
         # Check for broad assignment rights
-        if (re.search(r"freely", text) and re.search(r"(assign|transfer|sublet)", text)) or \
-           (re.search(r"without(\s+landlord'?s)?\s+consent", text) and re.search(r"(assign|transfer|sublet)", text)):
+        broad_assignment_pattern = (r"(freely|without\s+(landlord'?s\s+)?consent|may\s+assign\s+without).*?(assign|transfer|sublet)")
+        if re.search(broad_assignment_pattern, text, re.IGNORECASE | re.DOTALL):
             risks.append(RiskFlag(
                 clause_key=key,
                 clause_name=key.replace("_", " ").title(),
@@ -149,24 +258,29 @@ def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseTy
                 related_text=extract_relevant_text(clause.raw_excerpt, ["freely", "without consent", "assign", "transfer", "sublet"]),
                 page_number=clause.page_number
             ))
+            matched_heuristics.append("broad_assignment_rights")
             
         # Check for assignment restrictions
-        elif re.search(r"(no|not|prohibit|restrict).*?\s+assign", text) or re.search(r"(no|not|prohibit|restrict).*?\s+sublet", text):
-            if not re.search(r"consent.*?\s+not.*?\s+(unreasonably|arbitrarily).*?\s+(withheld|delayed|conditioned)", text):
-                risks.append(RiskFlag(
-                    clause_key=key,
-                    clause_name=key.replace("_", " ").title(),
-                    level=RiskLevel.MEDIUM,
-                    description="Assignment requires landlord consent with no standard for consent (may be arbitrarily withheld).",
-                    source="clause_analysis",
-                    related_text=extract_relevant_text(clause.raw_excerpt, ["consent", "assign", "sublet", "transfer"]),
-                    page_number=clause.page_number
-                ))
+        restriction_pattern = r"(no|not|prohibit|restrict).*?\s+assign|sublet"
+        consent_standard_pattern = r"consent.*?\s+not.*?\s+(unreasonably|arbitrarily).*?\s+(withheld|delayed|conditioned)"
+        if re.search(restriction_pattern, text, re.IGNORECASE | re.DOTALL) and not re.search(consent_standard_pattern, text, re.IGNORECASE | re.DOTALL):
+            risks.append(RiskFlag(
+                clause_key=key,
+                clause_name=key.replace("_", " ").title(),
+                level=RiskLevel.MEDIUM,
+                description="Assignment requires landlord consent with no standard for consent (may be arbitrarily withheld).",
+                source="clause_analysis",
+                related_text=extract_relevant_text(clause.raw_excerpt, ["consent", "assign", "sublet", "transfer"]),
+                page_number=clause.page_number
+            ))
+            matched_heuristics.append("arbitrary_consent_standard")
     
     # Term and termination risks
     if any(term in key.lower() for term in ["term", "termination", "commencement"]):
         # Check for early termination without proper notice
-        if re.search(r"(early|right\s+to).*\s+terminat", text) and not re.search(r"notice.*?\s+(\d+|thirty|sixty|ninety).*?\s+(day|month|week)", text):
+        termination_pattern = r"(early|right\s+to).*\s+terminat"
+        notice_pattern = r"notice.*?\s+(\d+|thirty|sixty|ninety).*?\s+(day|month|week)"
+        if re.search(termination_pattern, text, re.IGNORECASE | re.DOTALL) and not re.search(notice_pattern, text, re.IGNORECASE | re.DOTALL):
             risks.append(RiskFlag(
                 clause_key=key,
                 clause_name=key.replace("_", " ").title(),
@@ -176,9 +290,11 @@ def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseTy
                 related_text=extract_relevant_text(clause.raw_excerpt, ["terminat", "early", "right to"]),
                 page_number=clause.page_number
             ))
+            matched_heuristics.append("unclear_termination_notice")
             
         # Check for uncertain commencement date
-        if re.search(r"commencement.*?\s+to\s+be\s+determin", text) or re.search(r"commencement.*?\s+not\s+yet\s+determin", text):
+        uncertain_commencement_pattern = r"commencement.*?\s+(to\s+be|shall\s+be|will\s+be)\s+determin|commencement.*?\s+not\s+(yet)?\s+determin"
+        if re.search(uncertain_commencement_pattern, text, re.IGNORECASE | re.DOTALL):
             risks.append(RiskFlag(
                 clause_key=key,
                 clause_name=key.replace("_", " ").title(),
@@ -188,11 +304,14 @@ def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseTy
                 related_text=extract_relevant_text(clause.raw_excerpt, ["commencement", "determin"]),
                 page_number=clause.page_number
             ))
+            matched_heuristics.append("uncertain_commencement")
     
     # Rent risks
     if any(term in key.lower() for term in ["rent", "payment", "base_rent"]):
         # Check for undefined rent escalations
-        if re.search(r"(increas|escalat|adjust)", text) and not re.search(r"(\d+(\.\d+)?%|\d+\s+percent|\$\s*\d+)", text):
+        escalation_pattern = r"(increas|escalat|adjust)"
+        amount_pattern = r"(\d+(\.\d+)?%|\d+\s+percent|\$\s*\d+)"
+        if re.search(escalation_pattern, text, re.IGNORECASE | re.DOTALL) and not re.search(amount_pattern, text, re.IGNORECASE | re.DOTALL):
             risks.append(RiskFlag(
                 clause_key=key,
                 clause_name=key.replace("_", " ").title(),
@@ -202,9 +321,12 @@ def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseTy
                 related_text=extract_relevant_text(clause.raw_excerpt, ["increas", "escalat", "adjust"]),
                 page_number=clause.page_number
             ))
+            matched_heuristics.append("undefined_escalation")
             
         # Check for CPI escalations
-        if re.search(r"(CPI|consumer\s+price\s+index)", text) and not re.search(r"(cap|maximum|not\s+to\s+exceed|ceiling)", text):
+        cpi_pattern = r"(CPI|consumer\s+price\s+index)"
+        cap_pattern = r"(cap|maximum|not\s+to\s+exceed|ceiling)"
+        if re.search(cpi_pattern, text, re.IGNORECASE | re.DOTALL) and not re.search(cap_pattern, text, re.IGNORECASE | re.DOTALL):
             risks.append(RiskFlag(
                 clause_key=key,
                 clause_name=key.replace("_", " ").title(),
@@ -214,11 +336,13 @@ def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseTy
                 related_text=extract_relevant_text(clause.raw_excerpt, ["CPI", "consumer price index"]),
                 page_number=clause.page_number
             ))
+            matched_heuristics.append("uncapped_cpi")
     
     # Insurance risks
     if any(term in key.lower() for term in ["insurance", "liability", "indemnity"]):
         # Check for missing insurance requirements
-        if len(text) < 200 or not re.search(r"(coverage|policy|limit|amount)", text):
+        coverage_pattern = r"(coverage|policy|limit|amount)"
+        if len(text) < 200 or not re.search(coverage_pattern, text, re.IGNORECASE | re.DOTALL):
             risks.append(RiskFlag(
                 clause_key=key,
                 clause_name=key.replace("_", " ").title(),
@@ -228,9 +352,12 @@ def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseTy
                 related_text=clause.raw_excerpt[:200] + "..." if len(clause.raw_excerpt) > 200 else clause.raw_excerpt,
                 page_number=clause.page_number
             ))
+            matched_heuristics.append("incomplete_insurance")
             
         # Check for mutual waiver of subrogation
-        if re.search(r"subrogation", text) and not re.search(r"mutual.*?\s+waiver.*?\s+subrogation", text):
+        subrogation_pattern = r"subrogation"
+        mutual_waiver_pattern = r"(mutual|both\s+parties).*?\s+waiver.*?\s+subrogation"
+        if re.search(subrogation_pattern, text, re.IGNORECASE | re.DOTALL) and not re.search(mutual_waiver_pattern, text, re.IGNORECASE | re.DOTALL):
             risks.append(RiskFlag(
                 clause_key=key,
                 clause_name=key.replace("_", " ").title(),
@@ -240,11 +367,14 @@ def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseTy
                 related_text=extract_relevant_text(clause.raw_excerpt, ["subrogation", "waiver"]),
                 page_number=clause.page_number
             ))
+            matched_heuristics.append("no_mutual_subrogation")
     
     # Use clause risks
     if any(term in key.lower() for term in ["use", "permitted_use"]):
         # Check for overly restrictive use
-        if re.search(r"(only|solely|exclusively)\s+for", text) and not re.search(r"(similar|other|additional|related)\s+(use|purpose)", text):
+        restrictive_use_pattern = r"(only|solely|exclusively)\s+for"
+        flexibility_pattern = r"(similar|other|additional|related)\s+(use|purpose)"
+        if re.search(restrictive_use_pattern, text, re.IGNORECASE | re.DOTALL) and not re.search(flexibility_pattern, text, re.IGNORECASE | re.DOTALL):
             risks.append(RiskFlag(
                 clause_key=key,
                 clause_name=key.replace("_", " ").title(),
@@ -254,23 +384,37 @@ def analyze_clause_risks(key: str, clause: ClauseExtraction, lease_type: LeaseTy
                 related_text=extract_relevant_text(clause.raw_excerpt, ["only", "solely", "exclusively"]),
                 page_number=clause.page_number
             ))
+            matched_heuristics.append("restrictive_use")
     
-    return risks
+    return risks, matched_heuristics
 
 
-def analyze_retail_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[RiskFlag]:
-    """Analyze retail-specific risks"""
+def analyze_retail_specific_risks(clauses: Dict[str, ClauseExtraction]) -> Tuple[List[RiskFlag], Dict[str, List[str]]]:
+    """
+    Analyze retail-specific risks.
+    
+    Args:
+        clauses: Dictionary of extracted lease clauses
+        
+    Returns:
+        Tuple of:
+        - List of risk flags identified
+        - Dictionary mapping clause keys to matched heuristic names
+    """
     risks = []
+    heuristics_by_clause = {}  # For tracking which heuristics matched in which clauses
     
     # Check for co-tenancy issues
     has_cotenancy = False
     for key, clause in clauses.items():
         text = clause.content.lower() + " " + clause.raw_excerpt.lower()
+        matched_clause_heuristics = []
         
         # Co-tenancy risks
-        if "co_tenancy" in key.lower() or "cotenancy" in key.lower() or re.search(r"co[\-\s]tenancy", text):
+        if "co_tenancy" in key.lower() or "cotenancy" in key.lower() or re.search(r"co[\-\s]tenancy", text, re.IGNORECASE | re.DOTALL):
             has_cotenancy = True
-            if not re.search(r"(terminat|reduc|abate|remedy)", text):
+            remedy_pattern = r"(terminat|reduc|abate|remedy)"
+            if not re.search(remedy_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -280,10 +424,13 @@ def analyze_retail_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
                     related_text=extract_relevant_text(clause.raw_excerpt, ["co-tenancy", "cotenancy"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("no_cotenancy_remedy")
             
         # Percentage rent risks
-        if "percentage_rent" in key.lower() or re.search(r"percentage\s+rent", text):
-            if not re.search(r"(\d+(\.\d+)?%|\d+\s+percent)", text):
+        percentage_rent_pattern = r"percentage\s+rent"
+        percentage_pattern = r"(\d+(\.\d+)?%|\d+\s+percent)"
+        if "percentage_rent" in key.lower() or re.search(percentage_rent_pattern, text, re.IGNORECASE | re.DOTALL):
+            if not re.search(percentage_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -293,10 +440,14 @@ def analyze_retail_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
                     related_text=extract_relevant_text(clause.raw_excerpt, ["percentage rent"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("undefined_percentage_rent")
             
         # Operating hours risks
-        if "operating_hours" in key.lower() or "hours_of_operation" in key.lower() or re.search(r"(operating|business)\s+hours", text):
-            if re.search(r"(mall|center|shopping).*?\s+hours", text) and re.search(r"(must|shall|required|obligated)", text):
+        hours_pattern = r"(operating|business)\s+hours"
+        mall_hours_pattern = r"(mall|center|shopping).*?\s+hours"
+        mandate_pattern = r"(must|shall|required|obligated)"
+        if "operating_hours" in key.lower() or "hours_of_operation" in key.lower() or re.search(hours_pattern, text, re.IGNORECASE | re.DOTALL):
+            if re.search(mall_hours_pattern, text, re.IGNORECASE | re.DOTALL) and re.search(mandate_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -306,10 +457,14 @@ def analyze_retail_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
                     related_text=extract_relevant_text(clause.raw_excerpt, ["operating hours", "business hours", "mall", "center"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("mandatory_mall_hours")
             
         # Check for exclusivity
-        if "exclusive" in key.lower() or re.search(r"exclusive", text):
-            if not re.search(r"(tenant|lessee).*?\s+exclusive", text) and re.search(r"(retail|shopping center|mall)", text):
+        exclusive_pattern = r"exclusive"
+        tenant_exclusive_pattern = r"(tenant|lessee).*?\s+exclusive"
+        retail_pattern = r"(retail|shopping center|mall)"
+        if "exclusive" in key.lower() or re.search(exclusive_pattern, text, re.IGNORECASE | re.DOTALL):
+            if not re.search(tenant_exclusive_pattern, text, re.IGNORECASE | re.DOTALL) and re.search(retail_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -319,6 +474,11 @@ def analyze_retail_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
                     related_text=extract_relevant_text(clause.raw_excerpt, ["exclusive"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("no_tenant_exclusive")
+        
+        # Add any matched heuristics to the tracking dictionary
+        if matched_clause_heuristics:
+            heuristics_by_clause[key] = matched_clause_heuristics
     
     # Check for missing co-tenancy in retail lease
     use_text = ""
@@ -326,7 +486,7 @@ def analyze_retail_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
         if any(term in key.lower() for term in ["use", "permitted"]):
             use_text += clause.content.lower() + " " + clause.raw_excerpt.lower()
     
-    if not has_cotenancy and re.search(r"(retail|store|shop|shopping center|mall)", use_text):
+    if not has_cotenancy and re.search(r"(retail|store|shop|shopping center|mall)", use_text, re.IGNORECASE | re.DOTALL):
         risks.append(RiskFlag(
             clause_key="missing_cotenancy",
             clause_name="Missing Co-Tenancy",
@@ -336,21 +496,36 @@ def analyze_retail_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
             related_text="No co-tenancy clause found",
             page_number=None
         ))
+        heuristics_by_clause["missing_cotenancy"] = ["missing_cotenancy_clause"]
     
-    return risks
+    return risks, heuristics_by_clause
 
 
-def analyze_office_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[RiskFlag]:
-    """Analyze office-specific risks"""
+def analyze_office_specific_risks(clauses: Dict[str, ClauseExtraction]) -> Tuple[List[RiskFlag], Dict[str, List[str]]]:
+    """
+    Analyze office-specific risks.
+    
+    Args:
+        clauses: Dictionary of extracted lease clauses
+        
+    Returns:
+        Tuple of:
+        - List of risk flags identified
+        - Dictionary mapping clause keys to matched heuristic names
+    """
     risks = []
+    heuristics_by_clause = {}
     
     # Check for operating expense issues
     for key, clause in clauses.items():
         text = clause.content.lower() + " " + clause.raw_excerpt.lower()
+        matched_clause_heuristics = []
         
         # Operating expense risks
-        if any(term in key.lower() for term in ["operating_expenses", "opex", "expense"]) or re.search(r"operating\s+expenses", text):
-            if not re.search(r"(cap|ceiling|maximum|not\s+to\s+exceed)", text):
+        opex_pattern = r"operating\s+expenses"
+        cap_pattern = r"(cap|ceiling|maximum|not\s+to\s+exceed)"
+        if any(term in key.lower() for term in ["operating_expenses", "opex", "expense"]) or re.search(opex_pattern, text, re.IGNORECASE | re.DOTALL):
+            if not re.search(cap_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -360,8 +535,10 @@ def analyze_office_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
                     related_text=extract_relevant_text(clause.raw_excerpt, ["operating expense", "opex"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("no_opex_cap")
             
-            if not re.search(r"(audit|review|inspect|examin).*?\s+(books|records)", text):
+            audit_pattern = r"(audit|review|inspect|examin).*?\s+(books|records)"
+            if not re.search(audit_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -371,10 +548,13 @@ def analyze_office_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
                     related_text=extract_relevant_text(clause.raw_excerpt, ["operating expense", "opex"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("no_audit_rights")
             
         # Measurement method risks
-        if any(term in key.lower() for term in ["square_feet", "sqft", "area", "premises"]) or re.search(r"(square\s+feet|sq\.?\s*ft\.?|area|rentable)", text):
-            if not re.search(r"(BOMA|REBNY|measurement\s+standard)", text):
+        sqft_pattern = r"(square\s+feet|sq\.?\s*ft\.?|area|rentable)"
+        measurement_std_pattern = r"(BOMA|REBNY|measurement\s+standard)"
+        if any(term in key.lower() for term in ["square_feet", "sqft", "area", "premises"]) or re.search(sqft_pattern, text, re.IGNORECASE | re.DOTALL):
+            if not re.search(measurement_std_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -384,10 +564,13 @@ def analyze_office_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
                     related_text=extract_relevant_text(clause.raw_excerpt, ["square feet", "sqft", "area", "rentable"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("no_measurement_standard")
             
         # Tenant improvement risks
-        if any(term in key.lower() for term in ["improvement", "allowance", "buildout"]) or re.search(r"(tenant\s+improvement|allowance|build[- ]out)", text):
-            if not re.search(r"(\$\s*\d+|\d+\s+dollars|per\s+square\s+foot)", text):
+        ti_pattern = r"(tenant\s+improvement|allowance|build[- ]out)"
+        amount_pattern = r"(\$\s*\d+|\d+\s+dollars|per\s+square\s+foot)"
+        if any(term in key.lower() for term in ["improvement", "allowance", "buildout"]) or re.search(ti_pattern, text, re.IGNORECASE | re.DOTALL):
+            if not re.search(amount_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -397,21 +580,41 @@ def analyze_office_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[
                     related_text=extract_relevant_text(clause.raw_excerpt, ["improvement", "allowance", "buildout"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("undefined_ti_allowance")
+                
+        # Add any matched heuristics to the tracking dictionary
+        if matched_clause_heuristics:
+            heuristics_by_clause[key] = matched_clause_heuristics
     
-    return risks
+    return risks, heuristics_by_clause
 
 
-def analyze_industrial_specific_risks(clauses: Dict[str, ClauseExtraction]) -> List[RiskFlag]:
-    """Analyze industrial-specific risks"""
+def analyze_industrial_specific_risks(clauses: Dict[str, ClauseExtraction]) -> Tuple[List[RiskFlag], Dict[str, List[str]]]:
+    """
+    Analyze industrial-specific risks.
+    
+    Args:
+        clauses: Dictionary of extracted lease clauses
+        
+    Returns:
+        Tuple of:
+        - List of risk flags identified
+        - Dictionary mapping clause keys to matched heuristic names
+    """
     risks = []
+    heuristics_by_clause = {}
     
     # Check for environmental and hazardous materials issues
     for key, clause in clauses.items():
         text = clause.content.lower() + " " + clause.raw_excerpt.lower()
+        matched_clause_heuristics = []
         
         # Environmental risks
-        if "environmental" in key.lower() or re.search(r"environmental", text):
-            if re.search(r"(tenant|lessee).*?\s+(respons|liability|remediat|clean)", text) and re.search(r"(pre.*?exist|prior|existing)", text):
+        env_pattern = r"environmental"
+        tenant_resp_pattern = r"(tenant|lessee).*?\s+(respons|liability|remediat|clean)"
+        preexisting_pattern = r"(pre.*?exist|prior|existing)"
+        if "environmental" in key.lower() or re.search(env_pattern, text, re.IGNORECASE | re.DOTALL):
+            if re.search(tenant_resp_pattern, text, re.IGNORECASE | re.DOTALL) and re.search(preexisting_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -421,10 +624,13 @@ def analyze_industrial_specific_risks(clauses: Dict[str, ClauseExtraction]) -> L
                     related_text=extract_relevant_text(clause.raw_excerpt, ["environmental", "tenant", "lessee", "responsibility", "liability"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("tenant_preexisting_env_liability")
             
         # Hazardous materials risks
-        if "hazardous" in key.lower() or "hazmat" in key.lower() or re.search(r"hazardous\s+materials", text):
-            if not re.search(r"(landlord|lessor).*?\s+(represent|warrant|disclos)", text):
+        hazmat_pattern = r"hazardous\s+materials"
+        landlord_rep_pattern = r"(landlord|lessor).*?\s+(represent|warrant|disclos)"
+        if "hazardous" in key.lower() or "hazmat" in key.lower() or re.search(hazmat_pattern, text, re.IGNORECASE | re.DOTALL):
+            if not re.search(landlord_rep_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -434,8 +640,11 @@ def analyze_industrial_specific_risks(clauses: Dict[str, ClauseExtraction]) -> L
                     related_text=extract_relevant_text(clause.raw_excerpt, ["hazardous", "materials"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("no_hazmat_representations")
                 
-            if re.search(r"(indemnif|hold\s+harmless).*?\s+(landlord|lessor)", text) and not re.search(r"except.*?\s+(pre.*?exist|prior|existing)", text):
+            indemnify_pattern = r"(indemnif|hold\s+harmless).*?\s+(landlord|lessor)"
+            except_pattern = r"except.*?\s+(pre.*?exist|prior|existing)"
+            if re.search(indemnify_pattern, text, re.IGNORECASE | re.DOTALL) and not re.search(except_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -445,10 +654,14 @@ def analyze_industrial_specific_risks(clauses: Dict[str, ClauseExtraction]) -> L
                     related_text=extract_relevant_text(clause.raw_excerpt, ["indemnif", "hold harmless", "hazardous"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("unlimited_hazmat_indemnity")
             
         # ADA compliance risks
-        if re.search(r"(ADA|Americans\s+with\s+Disabilities\s+Act|accessibility)", text):
-            if re.search(r"(tenant|lessee).*?\s+(respons|comply|compliance)", text) and re.search(r"(existing|current|premises)", text):
+        ada_pattern = r"(ADA|Americans\s+with\s+Disabilities\s+Act|accessibility)"
+        tenant_ada_pattern = r"(tenant|lessee).*?\s+(respons|comply|compliance)"
+        existing_pattern = r"(existing|current|premises)"
+        if re.search(ada_pattern, text, re.IGNORECASE | re.DOTALL):
+            if re.search(tenant_ada_pattern, text, re.IGNORECASE | re.DOTALL) and re.search(existing_pattern, text, re.IGNORECASE | re.DOTALL):
                 risks.append(RiskFlag(
                     clause_key=key,
                     clause_name=key.replace("_", " ").title(),
@@ -458,39 +671,68 @@ def analyze_industrial_specific_risks(clauses: Dict[str, ClauseExtraction]) -> L
                     related_text=extract_relevant_text(clause.raw_excerpt, ["ADA", "Americans with Disabilities", "accessibility"]),
                     page_number=clause.page_number
                 ))
+                matched_clause_heuristics.append("tenant_ada_liability")
+                
+        # Add any matched heuristics to the tracking dictionary
+        if matched_clause_heuristics:
+            heuristics_by_clause[key] = matched_clause_heuristics
     
-    return risks
+    return risks, heuristics_by_clause
 
 
-def analyze_cross_clause_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -> List[RiskFlag]:
-    """Identify risks that span multiple clauses"""
+def analyze_cross_clause_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -> Tuple[List[RiskFlag], Dict[str, List[str]]]:
+    """
+    Identify risks that span multiple clauses.
+    
+    Args:
+        clauses: Dictionary of extracted lease clauses
+        lease_type: Type of lease
+        
+    Returns:
+        Tuple of:
+        - List of risk flags identified
+        - Dictionary mapping clause keys to matched heuristic names
+    """
     risks = []
+    heuristics_by_clause = {}
     
     # Check for repair responsibility vs. insurance coverage mismatch
     repair_responsibility = "unknown"
+    repair_clause_key = None
+    
     for key, clause in clauses.items():
         if any(term in key.lower() for term in ["maintenance", "repair"]):
             text = clause.content.lower() + " " + clause.raw_excerpt.lower()
-            if re.search(r"(tenant|lessee).*?\s+(respons|shall|must).*?\s+(repair|maintain)", text) and \
-               re.search(r"(structural|roof|foundation|exterior)", text):
+            tenant_repair_pattern = r"(tenant|lessee).*?\s+(respons|shall|must).*?\s+(repair|maintain)"
+            structural_pattern = r"(structural|roof|foundation|exterior)"
+            landlord_repair_pattern = r"(landlord|lessor).*?\s+(respons|shall|must).*?\s+(repair|maintain)"
+            
+            if re.search(tenant_repair_pattern, text, re.IGNORECASE | re.DOTALL) and re.search(structural_pattern, text, re.IGNORECASE | re.DOTALL):
                 repair_responsibility = "tenant"
+                repair_clause_key = key
                 break
-            elif re.search(r"(landlord|lessor).*?\s+(respons|shall|must).*?\s+(repair|maintain)", text) and \
-                 re.search(r"(structural|roof|foundation|exterior)", text):
+            elif re.search(landlord_repair_pattern, text, re.IGNORECASE | re.DOTALL) and re.search(structural_pattern, text, re.IGNORECASE | re.DOTALL):
                 repair_responsibility = "landlord"
+                repair_clause_key = key
                 break
     
     insurance_coverage = "unknown"
+    insurance_clause_key = None
+    
     for key, clause in clauses.items():
         if any(term in key.lower() for term in ["insurance", "liability"]):
             text = clause.content.lower() + " " + clause.raw_excerpt.lower()
-            if re.search(r"(property|casualty|all[\-\s]risk|fire).*?\s+insurance", text) and \
-               re.search(r"(tenant|lessee).*?\s+(shall|must|will|to\s+maintain)", text):
+            property_ins_pattern = r"(property|casualty|all[\-\s]risk|fire).*?\s+insurance"
+            tenant_ins_pattern = r"(tenant|lessee).*?\s+(shall|must|will|to\s+maintain)"
+            landlord_ins_pattern = r"(landlord|lessor).*?\s+(shall|must|will|to\s+maintain)"
+            
+            if re.search(property_ins_pattern, text, re.IGNORECASE | re.DOTALL) and re.search(tenant_ins_pattern, text, re.IGNORECASE | re.DOTALL):
                 insurance_coverage = "tenant"
+                insurance_clause_key = key
                 break
-            elif re.search(r"(property|casualty|all[\-\s]risk|fire).*?\s+insurance", text) and \
-                 re.search(r"(landlord|lessor).*?\s+(shall|must|will|to\s+maintain)", text):
+            elif re.search(property_ins_pattern, text, re.IGNORECASE | re.DOTALL) and re.search(landlord_ins_pattern, text, re.IGNORECASE | re.DOTALL):
                 insurance_coverage = "landlord"
+                insurance_clause_key = key
                 break
     
     if repair_responsibility == "tenant" and insurance_coverage == "landlord":
@@ -502,23 +744,39 @@ def analyze_cross_clause_risks(clauses: Dict[str, ClauseExtraction], lease_type:
             source="cross_clause_analysis",
             related_text="Multiple clauses affected"
         ))
+        
+        # Add to heuristics tracking
+        if repair_clause_key:
+            heuristics_by_clause[repair_clause_key] = heuristics_by_clause.get(repair_clause_key, []) + ["repair_insurance_mismatch"]
+        if insurance_clause_key:
+            heuristics_by_clause[insurance_clause_key] = heuristics_by_clause.get(insurance_clause_key, []) + ["repair_insurance_mismatch"]
     
     # Check for tenant termination rights vs. landlord's remedies for default
     tenant_termination = False
+    termination_clause_key = None
+    
     for key, clause in clauses.items():
         if any(term in key.lower() for term in ["term", "termination"]):
             text = clause.content.lower() + " " + clause.raw_excerpt.lower()
-            if re.search(r"(tenant|lessee).*?\s+(right|option|may).*?\s+terminat", text):
+            tenant_term_pattern = r"(tenant|lessee).*?\s+(right|option|may).*?\s+terminat"
+            
+            if re.search(tenant_term_pattern, text, re.IGNORECASE | re.DOTALL):
                 tenant_termination = True
+                termination_clause_key = key
                 break
     
     landlord_remedies_accelerated = False
+    default_clause_key = None
+    
     for key, clause in clauses.items():
         if any(term in key.lower() for term in ["default", "remedies"]):
             text = clause.content.lower() + " " + clause.raw_excerpt.lower()
-            if re.search(r"(landlord|lessor).*?\s+(right|may|shall|entitled).*?\s+(accelerat|due|payable)", text) and \
-               re.search(r"(rent|payment|amount)", text):
+            accel_pattern = r"(landlord|lessor).*?\s+(right|may|shall|entitled).*?\s+(accelerat|due|payable)"
+            rent_pattern = r"(rent|payment|amount)"
+            
+            if re.search(accel_pattern, text, re.IGNORECASE | re.DOTALL) and re.search(rent_pattern, text, re.IGNORECASE | re.DOTALL):
                 landlord_remedies_accelerated = True
+                default_clause_key = key
                 break
     
     if tenant_termination and landlord_remedies_accelerated:
@@ -530,12 +788,28 @@ def analyze_cross_clause_risks(clauses: Dict[str, ClauseExtraction], lease_type:
             source="cross_clause_analysis",
             related_text="Multiple clauses affected"
         ))
+        
+        # Add to heuristics tracking
+        if termination_clause_key:
+            heuristics_by_clause[termination_clause_key] = heuristics_by_clause.get(termination_clause_key, []) + ["termination_acceleration_conflict"]
+        if default_clause_key:
+            heuristics_by_clause[default_clause_key] = heuristics_by_clause.get(default_clause_key, []) + ["termination_acceleration_conflict"]
     
-    return risks
+    return risks, heuristics_by_clause
 
 
-def extract_relevant_text(text: str, keywords: List[str], context_chars: int = 20) -> str:
-    """Extract the most relevant portion of text containing keywords"""
+def extract_relevant_text(text: str, keywords: List[str], context_chars: int = 30) -> str:
+    """
+    Extract the most relevant portion of text containing keywords.
+    
+    Args:
+        text: The full text to extract from
+        keywords: List of keywords to search for
+        context_chars: Number of characters around keyword for context
+        
+    Returns:
+        A string with the most relevant portion of text
+    """
     if not text or not keywords:
         return ""
     
@@ -576,7 +850,15 @@ def extract_relevant_text(text: str, keywords: List[str], context_chars: int = 2
 
 
 def deduplicate_risks(risks: List[RiskFlag]) -> List[RiskFlag]:
-    """Remove duplicate risk flags"""
+    """
+    Remove duplicate risk flags.
+    
+    Args:
+        risks: List of risk flags to deduplicate
+        
+    Returns:
+        A list with unique risk flags
+    """
     seen = set()
     unique_risks = []
     
@@ -589,3 +871,10 @@ def deduplicate_risks(risks: List[RiskFlag]) -> List[RiskFlag]:
             unique_risks.append(risk)
     
     return unique_risks
+
+# TODO: Enhance the system with semantic similarity or embedding-based clause detection
+# This would involve:
+# 1. Creating embeddings for each clause using a model like BERT or OpenAI's text-embedding models
+# 2. Computing similarity between clauses and common clause templates
+# 3. Using a threshold to determine if a clause matches a category 
+# 4. Potentially training a specialized model on lease data to better recognize clause types
