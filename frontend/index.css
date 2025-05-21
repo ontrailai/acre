@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --secondary: #10b981;
+  --secondary-dark: #059669;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --info: #6366f1;
+  --light: #f9fafb;
+  --dark: #111827;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply text-gray-900 font-semibold;
+}
+
+.prose h1 {
+  @apply text-3xl mt-8 mb-4;
+}
+
+.prose h2 {
+  @apply text-2xl mt-6 mb-3;
+}
+
+.prose h3 {
+  @apply text-xl mt-4 mb-2;
+}
+
+/* Custom styles */
+.risk-high {
+  @apply text-red-600 bg-red-50 px-2 py-1 rounded;
+}
+
+.risk-medium {
+  @apply text-orange-600 bg-orange-50 px-2 py-1 rounded;
+}
+
+.risk-low {
+  @apply text-yellow-600 bg-yellow-50 px-2 py-1 rounded;
+}
+
+.dropzone {
+  @apply border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-colors;
+}
+
+.dropzone-active {
+  @apply border-blue-500 bg-blue-50;
+}
+
+.spinner {
+  @apply animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500;
+}
+
+.page-section {
+  @apply max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded shadow;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded shadow;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow p-6;
+}

@@ -1,0 +1,320 @@
+Below is the assignment section from a LeaseType.RETAIL lease.
+Extract all relevant information and return as JSON. Be thorough but precise.
+
+LEASE TEXT:
+Section 1.  Assignment and Subletting.  Under the terms and conditions 
+ 
+20 
+hereunder, Tenant shall have the absolute right to transfer and assign this 
+lease or to sublet all or any portion of the Leased Premises or to cease 
+operating Tenant's business on the Leased Premises provided that at the 
+time of such assignment or sublease Tenant shall not be in default in the 
+performance and observance of the obligations imposed upon Tenant 
+hereunder, and in the event that Tenant assigns or sublets this property 
+for an amount in excess of the rental amount then being paid, then Landlord 
+shall require as further consideration for the granting of the right to 
+assign or sublet, a sum equal to fifty (50%) percent of the difference 
+between the amount of rental to be charged by Tenant to Tenant's sublessee 
+or assignee and the amount provided for herein, payable in a manner 
+consistent with the method of payment by the sublessee or assignee to the 
+Tenant, and/or fifty (50%) percent of the consideration paid or to be paid 
+to Tenant by Tenant's sublessee or assignee. Landlord must consent in 
+writing to any such sublessee or assignee, although such consent shall not 
+be unreasonably withheld. The use of the Leased Premises by such assignee 
+or sublessee shall be expressly limited by and to the provisions of this 
+lease.  
+ 
+Section 2.  Fixtures.  All personal property, furnishings and equipment 
+presently and all other trade fixtures installed in or hereafter by or at 
+the expense of Tenant and all additions and/or improvements, exclusive of 
+structural, mechanical, electrical, and plumbing, affixed to the Leased 
+Premises and used in the operation of the Tenant's business made to, in or 
+on the Leased Premises by and at the expense of Tenant and susceptible of 
+being removed from the Leased Premises without damage, unless such damage 
+be repaired by Tenant, shall remain the property of Tenant and Tenant may, 
+but shall not be obligated to, remove the same or any part thereof at any 
+time or times during the term hereof, provided that Tenant, at its sole 
+cost and expense, shall make any repairs occasioned by such removal.  
+ 
+Section 3.  Estoppel Certificates.  At any time and from time to time, 
+Landlord and Tenant each agree, upon request in writing from the other, to 
+execute, acknowledge and deliver to the other or to any person designated 
+by the other a statement in writing certifying that the Lease is unmodified 
+and is in full force and effect, or if there have been modifications, that 
+the same is in full force and effect as modified (stating the 
+modifications), that the other party is not in default in the performance 
+of its covenants hereunder, or if there have been such defaults, specifying 
+the same, and the dates to which the rent and other charges have been paid. 
+ 
+ 
+Section 4.  Invalidity of Particular Provision.  If any term or provision 
+of this Lease or the application hereof to any person or circumstance 
+shall, to any extent, be held invalid or unenforceable, the remainder of 
+this Lease, or the application of such term or provision to persons or 
+ 
+21 
+circumstances other than those as to which it is held invalid or 
+unenforceable, shall not be affected thereby, and each term and provision 
+of this Lease shall be valid and be enforced to the fullest extent 
+permitted by law.  
+ 
+Section 5.  Captions and Definitions of Parties.  The captions of the 
+Sections of this Lease are for convenience only and are not a part of this 
+Lease and do not in any way limit or amplify the terms and provisions of 
+this Lease. The word "Landlord" and the pronouns referring thereto, shall 
+mean, where the context so admits or requires, the persons, firm or 
+corporation named herein as Landlord or the mortgagee in possession at any 
+time, of the land and building comprising the Leased Premises. If there is 
+more than one Landlord, the covenants of Landlord shall be the joint and 
+several obligations of each of them, and if Landlord is a partnership, the 
+covenants of Landlord shall be the joint and several obligations of each of 
+the partners and the obligations of the firm. Any pronoun shall be read in 
+the singular or plural and in such gender as the context may require. 
+Except as in this Lease otherwise provided, the terms and provisions of 
+this Lease shall be binding upon and inure to the benefit of the parties 
+hereto and their respective successors and assigns.  
+ 
+Nothing contained herein shall be deemed or construed by the parties hereto 
+nor by any third party as creating the relationship of principal and agent 
+or of partnership or of a joint venture between the parties hereto, it 
+being understood and agreed that neither any provision contained herein, 
+nor any acts of the parties hereto, shall be deemed to create any 
+relationship between the parties hereto other than the relationship of 
+Landlord and Tenant.  
+ 
+Section 6.  Brokerage.  No party has acted as, by or through a broker in 
+the effectuation of this Agreement, except as set out hereinafter.  
+ 
+Section 7.  Entire Agreement.  This instrument contains the entire and only 
+agreement between the parties, and no oral statements or representations or 
+prior written matter not contained in this instrument shall have any force 
+and effect. This Lease shall not be modified in any way except by a writing 
+executed by both parties.  
+ 
+Section 8.  Governing Law. All matters pertaining to this agreement 
+(including its interpretation, application, validity, performance and 
+breach) in whatever jurisdiction action may be brought, shall be governed 
+by, construed and enforced in accordance with the laws of the State of 
+______________. The parties herein waive trial by jury and agree to submit 
+to the personal jurisdiction and venue of a court of subject matter 
+jurisdiction located in _____________________ County, State of 
+______________. In the event that litigation results from or arises out of 
+ 
+22 
+this Agreement or the performance thereof, the parties agree to reimburse 
+the prevailing party's reasonable attorney's fees, court costs, and all 
+other expenses, whether or not taxable by the court as costs, in addition 
+to any other relief to which the prevailing party may be entitled. In such 
+event, no action shall be entertained by said court or any court of 
+competent jurisdiction if filed more than one year subsequent to the date 
+the cause(s) of action actually accrued regardless of whether damages were 
+otherwise as of said time calculable.  
+ 
+Section 9.  Contractual Procedures.  Unless specifically disallowed by law, 
+should litigation arise hereunder, service of process therefor may be 
+obtained through certified mail, return receipt requested; the parties 
+hereto waiving any and all rights they may have to object to the method by 
+which service was perfected.  
+ 
+Section 10.  Extraordinary remedies.  To the extent cognizable at law, the 
+parties hereto, in the event of breach and in addition to any and all other 
+remedies available thereto, may obtain injunctive relief, regardless of 
+whether the injured party can demonstrate that no adequate remedy exists at 
+law.  
+ 
+Section 11.  Reliance on Financial Statement.  Tenant shall furnish 
+concurrently with the execution of this lease, a financial statement of 
+Tenant prepared by an accountant. Tenant, both in corporate capacity, if 
+applicable, and individually, hereby represents and warrants that all the 
+information contained therein is complete, true, and correct. Tenant 
+understands that Landlord is relying upon the accuracy of the information 
+contained therein. Should there be found to exist any inaccuracy within the 
+financial statement which adversely affects Tenant's financial standing, or 
+should Tenant's financial circumstances materially change, Landlord may 
+demand, as additional security, an amount equal to an additional two (2) 
+months' rent, which additional security shall be subject to all terms and 
+conditions herein, require a fully executed guaranty by a third party 
+acceptable to Landlord, elect to terminate this Lease, or hold Tenant 
+personally and individually liable hereunder. 
+ 
+ 
+IN WITNESS WHEREOF, the parties hereto have executed this Lease the day and 
+year first above written or have caused this Lease to be executed by their 
+respective officers thereunto duly authorized.  
+ 
+Signed, sealed and delivered in the presence of: 
+ 
+______________________________  ______________________________ 
+"LANDLORD"                      "TENANT" 
+ 
+ 
+23 
+____________________________ 
+Witness 
+______________________________ 
+Witness 
+ 
+STATE OF  
+COUNTY OF 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+24 
+EXHIBIT "A" LEGAL DESCRIPTION 
+ 
+The following described real property, together with all improvements thereon:  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+which has a street address as follows: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initials:  
+LANDLORD  ______________ 
+TENANT   ______________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+25 
+EXHIBIT "B" TENANT PLANS AND SPECIFICATIONS 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initials:  
+LANDLORD  _____________ 
+TENANT   _____________
+
+Return a JSON object where each key is a specific clause or term, and each value contains:
+- "structured_json": A structured representation of the clause data
+- "content": A concise explanation of what the clause means
+- "summary_bullet": A single bullet point summarizing the key information
+- "source_excerpt": The exact text from the lease that supports this extraction
+- "confidence_score": A number from 0.0 to 1.0 indicating your confidence
+- "risk_flags": An array of objects with "level" (low/medium/high) and "description"
+- "needs_review": Boolean indicating if human review is recommended
+
+Example response format:
+{
+  "lease_term": {
+    "structured_json": {
+      "start_date": "01/01/2023",
+      "end_date": "12/31/2028",
+      "initial_term_months": 60,
+      "has_renewal_options": true,
+      "renewal_options": [
+        {
+          "duration_months": 60,
+          "notice_period_months": 12
+        }
+      ]
+    },
+    "content": "The lease has an initial 5-year term starting January 1, 2023 with one 5-year renewal option.",
+    "summary_bullet": "5-year initial term (Jan 2023-Dec 2028) with one 5-year renewal option requiring 12 months' notice",
+    "source_excerpt": "The term of this Lease (the 'Term') shall commence on January 1, 2023 (the 'Commencement Date') and end on December 31, 2028, unless sooner terminated as provided herein.",
+    "confidence_score": 0.95,
+    "risk_flags": [],
+    "needs_review": false
+  }
+}
+
+Pay particular attention to assignment restrictions and any potential flexibility limitations:
+- What specific standards must be met for consent?
+- Are there any absolute prohibitions?
+- Are there any permitted transfers without consent?
+- What constitutes a change of control?

@@ -1,0 +1,26 @@
+{
+  "total_segments": 4,
+  "successful_segments": 0,
+  "failed_segments": 3,
+  "empty_segments": 1,
+  "segment_results": [
+    {
+      "section_name": "preamble",
+      "success": false,
+      "error": "No clauses extracted",
+      "clauses_extracted": 0
+    },
+    {
+      "section_name": "insurance",
+      "success": false,
+      "error": "No clauses extracted",
+      "clauses_extracted": 0
+    },
+    {
+      "section_name": "assignment",
+      "success": false,
+      "error": "No clauses extracted",
+      "clauses_extracted": 0
+    }
+  ]
+}

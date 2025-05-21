@@ -1,0 +1,38 @@
+{
+  "premises": [],
+  "term": [],
+  "rent": [],
+  "additional_charges": [],
+  "maintenance": [],
+  "use": [],
+  "assignment": [
+    {
+      "pattern": "\\b(?:ARTICLE|SECTION|PARAGRAPH)\\s+\\d+\\s*[.:]\\s*ASSIGNMENT\\s+AND\\s+SUBLETTING\\b",
+      "match_text": "Section 1.  Assignment and Subletting",
+      "position": 52328,
+      "context": "y.       ARTICLE XX - MISCELLANEOUS     >>>Section 1.  Assignment and Subletting.  "
+    },
+    {
+      "pattern": "\\b(?:ARTICLE|SECTION|PARAGRAPH)\\s+\\d+\\s*[.:]\\s*ASSIGNMENT\\b",
+      "match_text": "Section 1.  Assignment",
+      "position": 52328,
+      "context": "y.       ARTICLE XX - MISCELLANEOUS     >>>Section 1.  Assignment and Subletting.  "
+    }
+  ],
+  "insurance": [
+    {
+      "pattern": "\\b(?:ARTICLE|SECTION|PARAGRAPH)\\s+\\d+\\s*[.:]\\s*INSURANCE\\b",
+      "match_text": "Section 1.  Insurance",
+      "position": 19348,
+      "context": "ises.       ARTICLE XIII - INSURANCE    >>>Section 1.  Insurance Proceeds.  In the "
+    }
+  ],
+  "casualty": [],
+  "eminent_domain": [],
+  "default": [],
+  "entry": [],
+  "miscellaneous": [],
+  "co_tenancy": [],
+  "percentage_rent": [],
+  "operating_hours": []
+}

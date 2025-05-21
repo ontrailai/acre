@@ -1,0 +1,26 @@
+# FastAPI and server
+fastapi==0.110.0
+uvicorn==0.27.1
+python-multipart==0.0.9
+aiofiles==23.2.1
+
+# PDF Processing
+PyMuPDF==1.23.19    # For native PDF text extraction
+pdf2image==1.17.0   # For converting PDF to images for OCR
+pytesseract==0.3.10 # For OCR
+
+# NLP and AI
+openai==1.14.0      # For GPT-4-Turbo API
+tiktoken==0.5.2     # For token counting
+
+# Document exports
+markdown==3.5.2       # For markdown processing
+python-docx==1.1.0    # For DOCX export
+XlsxWriter==3.1.9     # For XLSX export
+weasyprint==61.0      # For PDF export
+
+# Utilities
+python-dotenv==1.0.1  # For environment variables
+requests==2.31.0      # For HTTP requests
+Pillow==10.2.0        # For image processing (required by pdf2image)
+pydantic==2.6.1       # For data validation

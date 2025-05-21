@@ -1,0 +1,38 @@
+[
+  {
+    "section_name": "preamble",
+    "char_count": 19342,
+    "non_ws_count": 15690,
+    "line_count": 359,
+    "page_range": "1-7",
+    "match_text": "",
+    "first_100_chars": "1  SAMPLE COMMERCIAL LEASE AGREEMENT    THIS LEASE AGREEMENT is made and entered into [DATE], by and"
+  },
+  {
+    "section_name": "insurance",
+    "char_count": 32975,
+    "non_ws_count": 26856,
+    "line_count": 549,
+    "page_range": "7-18",
+    "match_text": "Section 1.  Insurance",
+    "first_100_chars": "Section 1.  Insurance Proceeds.  In the event of any damage to or  destruction of the Leased Premise"
+  },
+  {
+    "section_name": "assignment",
+    "char_count": 0,
+    "non_ws_count": 0,
+    "line_count": 0,
+    "page_range": "18-18",
+    "match_text": "Section 1.  Assignment and Subletting",
+    "first_100_chars": ""
+  },
+  {
+    "section_name": "assignment",
+    "char_count": 9210,
+    "non_ws_count": 7337,
+    "line_count": 277,
+    "page_range": "18-20",
+    "match_text": "Section 1.  Assignment",
+    "first_100_chars": "Section 1.  Assignment and Subletting.  Under the terms and conditions    20  hereunder, Tenant shal"
+  }
+]
