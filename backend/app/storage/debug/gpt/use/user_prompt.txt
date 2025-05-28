@@ -1,0 +1,40 @@
+Extract permitted use information from this clause:
+
+CLAUSE TEXT:
+Permitted Use; Permitted Name.  Tenant shall use the Premises only for the 
+use set for on the Lease Schedule and for the retail sale of products and services reasonably 
+ancillary thereto.  Tenant shall not use the Premises for the sale of any products not normally 
+associated with such use.  Tenant shall operate the Premises under only the Permitted Name(s) 
+(as defined in Section 1.9).  Tenant acknowledges that Landlord shall be permitted to grant to 
+other Tenants in the Building certain exclusive rights to engage in the sale of certain products 
+which are not normally sold as a primary product by business engaged in the business which is 
+the approved use herein.  Upon the granting of any such exclusive rights to any other tenant and 
+notice thereof to Tenant, Tenant agrees that it shall not thereafter add to the products which it 
+sells any product which conflicts with such exclusive use.  
+6.2 
+Compliance With Laws and Covenants.  During the Lease Term, Tenant, 
+at its sole expense, in its use and possession of the Premises, shall: 
+(a) 
+comply promptly and fully with (i) all laws, ordinances, notices, orders, rules, 
+regulations and requirements of all federal, state and municipal governments and all departments, 
+commissions, boards and officers thereof, including but not limited to The Americans with 
+Disabilities Act, 42 U.S.C. Section 12101 et. seq., and the ADA Disability Guidelines 
+promulgated with respect thereto, and (ii) all requirements (A) of the National Board of Fire 
+Underwriters (or any other body now or hereafter constituted exercising similar functions) which 
+are applicable to any or all of the Premises, or (B) imposed by any policy of insurance covering 
+any or all of the Premises, and (iii) all covenants and restrictions which may encumber the title to 
+any or all of the Premises, all if and to the extent that any of such requirements relate to any or 
+all of the Premises or to any equipment, pipes, utilities or other parts of the Premises which 
+exclusively serve the Premises, whether any of the foregoing are foreseen or unforeseen, or are 
+ordinary or extraordinary;  
+(b) 
+keep in force at all times all licenses, consents and permits necessary for the 
+lawful use of the Premises for the purposes herein provided.
+
+Return JSON with these fields only:
+{
+  "permitted_use": "what business/use is allowed",
+  "prohibited_uses": "any specifically prohibited uses",
+  "exclusive_rights": "any exclusive use rights",
+  "operating_requirements": "hours or operation requirements"
+}

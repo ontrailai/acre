@@ -1,0 +1,18 @@
+{
+  "option_to_terminate": {
+    "condition": "Substantial Damage or Destruction",
+    "trigger": "fire or other casualty",
+    "landlord_notice_period": "60 days",
+    "termination_effective_date": "30 days after notice",
+    "definition_of_substantial_damage": "serious damage or destruction rendering unusable 33% or more of the rentable square feet",
+    "tenant_obligations_on_termination": "pay all Base Rent, Rent and other sums accrued through termination date",
+    "landlord_restoration_period": "not longer than 90 days",
+    "tenant_right_to_terminate_if_not_restored": true,
+    "rent_abatement_condition": "proportion to the floor area rendered substantially unusable"
+  },
+  "no_termination_clause": {
+    "exceptions": "as expressly permitted by Section 15.1",
+    "tenant_liability": "remains for full Base Rent, Rent and all other sums",
+    "tenant_waiver": "waives right to surrender Lease or seek rent reduction due to damage or destruction"
+  }
+}

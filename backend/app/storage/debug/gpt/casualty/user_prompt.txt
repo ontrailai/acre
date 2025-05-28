@@ -1,0 +1,36 @@
+Extract key information from this lease clause:
+
+CLAUSE TEXT:
+Option to Terminate. If during the Term either the Premises or any portion 
+of the Building, the Common Areas, the total leased area,  or the Property are Substantially 
+Damaged or Destroyed by fire or other casualty, Landlord shall have the option (which it may 
+exercise by giving written notice thereof to Tenant within sixty (60) days after the date on which 
+such Substantial Damage or Destruction occurs) to terminate this Lease as of the date specified 
+in such notice (which date shall not be earlier than the thirtieth (30th) day after such notice is 
+given). “Substantial Damage and Destruction” and “Substantially Damaged or Destroyed” 
+shall mean serious damage or destruction rendering unusable 33% or more of the rentable square 
+feet of the Premises, the Food Court Common Area and/or the total square footage of the 
+Building.  On such termination, Tenant shall pay to Landlord all Base Rent, Rent and other sums 
+and charges payable by Tenant hereunder and accrued through such date (as justly apportioned to 
+the date of such termination). If Landlord does not terminate this Lease pursuant to this Section 
+15.1, Landlord shall restore the Building and/or Premises as soon thereafter as is reasonably 
+possible, but not longer than 90 days, to their condition on the date of completion of Landlord's 
+Work, taking into account any delay experienced by Landlord in recovering the proceeds of any 
+insurance policy payable on account of such damage or destruction and in obtaining any
+necessary permits and, failing such, Tenant may terminate this Lease. Until the Premises are so 
+repaired, the Base Rent (and each installment thereof) and the Rent shall abate in proportion to 
+the floor area or essential operating area of so much, if any, of the Premises as is rendered 
+substantially unusable by Tenant by such damage or destruction.   
+15.2 
+No Termination of Lease.  Except as is otherwise expressly permitted by 
+Section 15.1, no total or partial damage to or destruction of any or all of the Premises shall 
+entitle either party hereto to surrender or terminate this Lease, or shall relieve Tenant from its 
+liability hereunder to pay in full the Base Rent, any Rent and all other sums and charges which 
+are otherwise payable by Tenant hereunder, or from any of its other obligations hereunder, and 
+Tenant hereby waives any right now or hereafter conferred upon it by statute or otherwise, on 
+account of any such damage or destruction, to surrender this Lease, to quit or surrender any or all 
+of the Premises, or to have any suspension, diminution, abatement or reduction of the Base Rent 
+or any Rent or other sum payable by Tenant hereunder.  
+16.
+
+Return JSON with the most important facts from this clause. Use descriptive field names.

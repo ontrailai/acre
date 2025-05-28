@@ -1,0 +1,11 @@
+Extract key information from this lease clause:
+
+CLAUSE TEXT:
+Tenant’s “Event of Default” Defined.  Any one or more of the following 
+events shall constitute a default under the terms of this Lease (“Event of Default”):  
+20.1.1 the failure of Tenant to pay any Rent or other sum of money due 
+hereunder to Landlord or any other person, within ten (10) days after the same is due;  
+20.1.2 the sale of Tenant’s interest in the Premises under attachment, execution 
+or similar legal process without Landlord’s prior written approval;
+
+Return JSON with the most important facts from this clause. Use descriptive field names.

@@ -1,0 +1,28 @@
+[
+  {
+    "category": "Assignment",
+    "required_keywords": [
+      "assignment",
+      "sublet",
+      "transfer"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Co Tenancy",
+    "required_keywords": [
+      "co-tenancy",
+      "cotenancy"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Percentage Rent",
+    "required_keywords": [
+      "percentage",
+      "overage",
+      "gross sales"
+    ],
+    "match_found": false
+  }
+]

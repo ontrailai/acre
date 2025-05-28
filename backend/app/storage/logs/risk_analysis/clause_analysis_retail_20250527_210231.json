@@ -1,0 +1,628 @@
+[
+  {
+    "clause_key": "rent_monthly_rent_0",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_total_due_upfront_1",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_property_location_2",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_lease_term_start_date_3",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_lease_term_expiration_date_4",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_additional_rent_5",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_smoking_policy_violation_fee_6",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_pet_policy_7",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_deposit_security_deposit_purpose_0",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_deposit_pet_damage_deposit_1",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_deposit_return_of_security_deposit_2",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_deposit_itemized_statement_for_deposit_claims_3",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_deposit_forwarding_address_for_security_deposit_return_4",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_deposit_credit_reporting_notice_5",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_deposit_landlord's_access_for_maintenance_6",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_deposit_landlord's_access_for_showings_7",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_pet_licensing_and_vaccination_requirement_0",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_pet_behavior_representation_1",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_pet_control_in_common_areas_2",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_pet_waste_management_3",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_odor_and_stain_maintenance_4",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_restriction_on_pet_grooming_5",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_noise_control_6",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_liability_for_pet_damage_7",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_indemnification_for_pet-related_incidents_8",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_landlord's_right_to_revoke_pet_permission_9",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_landlord's_authority_to_remove_pet_10",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_managing_agent's_authority_11",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pet_policy_default_for_violation_12",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_tenant_signatures_0",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_landlord_signatures_1",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_signature_timestamps_2",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_lease_agreement_page_3",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_parking_spaces_allowed_4",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_vehicle_registration_requirement_5",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_parking_controls_and_measures_6",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_charges_for_security_cards/vehicle_tags_7",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_registered_vehicles_parking_restriction_8",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_vehicle_replacement_notification_9",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_nature_of_parking_rights_0",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_prohibited_parking_areas_1",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_parking_and_traffic_regulations_compliance_2",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_parking_area_usage_3",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_fire_lane_and_illegal_parking_ordinance_compliance_4",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_vehicle_type_restriction_5",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_vehicle_repair_restriction_6",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_vehicle_washing_restriction_7",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_tenant's_risk_acknowledgement_8",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_landlord's_liability_disclaimer_9",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking_default_consequence_10",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "use_tenant_signatures_0",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "use_landlord_signature_1",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "use_signature_timestamps_2",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "use_lease_agreement_page_3",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "use_use_of_premises_and_common_areas_restrictions_4",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "signature_acknowledgment_tenant_names_0",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "signature_acknowledgment_landlord_names_1",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "signature_acknowledgment_signature_date_and_time_for_deborah_hample_2",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "signature_acknowledgment_signature_date_and_time_for_riley_pasha_3",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "signature_acknowledgment_signature_date_and_time_for_jeffrey_altman_4",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "signature_acknowledgment_military_facilities_disclosure_5",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "signature_acknowledgment_bed_bug_appearance_information_6",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "health_and_safety_life_cycle_duration_of_a_bed_bug_0",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "health_and_safety_egg_laying_rate_of_female_bed_bugs_1",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "health_and_safety_growth_period_to_adulthood_for_bed_bugs_2",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "health_and_safety_survival_period_without_feeding_3",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "health_and_safety_common_time_for_bed_bug_feeding_4",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "health_and_safety_variability_in_human_reaction_to_bed_bug_bites_5",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "health_and_safety_signs_and_symptoms_of_bed_bug_infestation_6",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "health_and_safety_resources_for_more_information_on_bed_bugs_7",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_compliance_section_title_0",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_compliance_certificate_title_1",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_compliance_tenant_signature_2",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_compliance_tenant_signature_date_and_time_3",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_compliance_landlord_signature_4",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_compliance_landlord_signature_date_and_time_5",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_compliance_lead-based_paint_warning_6",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_compliance_federal_law_requirements_for_pre-1978_homes_7",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_compliance_lead_hazard_levels_8",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "missing_cotenancy",
+    "confidence": null,
+    "matched_heuristics": [
+      "missing_cotenancy_clause"
+    ],
+    "skipped": false
+  }
+]

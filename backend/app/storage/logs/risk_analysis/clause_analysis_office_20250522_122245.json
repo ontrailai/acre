@@ -1,0 +1,81 @@
+[
+  {
+    "clause_key": "miscellaneous_data",
+    "confidence": 0.9,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "term_data",
+    "confidence": 0.9,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "undefined_escalation"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "use_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "restrictive_use"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "insurance_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "incomplete_insurance",
+      "no_mutual_subrogation"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "utilities_data",
+    "confidence": 0.9,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "maintenance_data",
+    "confidence": 0.9,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "tenant_improvements_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "undefined_ti_allowance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "casualty_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "assignment_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "arbitrary_consent_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "default_data",
+    "confidence": 0.9,
+    "matched_heuristics": [],
+    "skipped": false
+  }
+]

@@ -1,0 +1,217 @@
+Analyze this lease text segment and extract ALL relevant clause information using semantic understanding:
+
+CURRENT SECTION NAME: miscellaneous
+
+TEXT SEGMENT:
+©2019 RPI — Realty Publications, Inc., P.O. BOX 5707, RIVERSIDE, CA 92517
+I agree to let on the terms stated above.
+Date:  
+ 
+, 20 
+   
+Landlord:  
+ 
+ 
+ 
+ 
+ 
+    
+Signature:  
+ 
+ 
+ 
+ 
+ 
+    
+Landord's Broker:  
+ 
+ 
+ 
+ 
+    
+Broker's DRE #:  
+ 
+ 
+ 
+ 
+     
+is the broker for: ̆ Landord
+                           ̆ both Tenant and Landlord (dual agent)
+Landord's Agent:  
+ 
+ 
+   
+ 
+    
+Agent's DRE #:   
+ 
+ 
+ 
+ 
+             
+is ̆ Landord's agent (salesperson or broker-associate)
+    ̆ both Tenant's and Landlord's agent (dual agent) 
+Signature:  
+ 
+ 
+ 
+ 
+ 
+     
+Address:  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+Phone:  
+ 
+        Cell:  
+ 
+ 
+    
+Email:  
+ 
+ 
+ 
+ 
+ 
+                              
+I agree to occupy on the terms stated above.
+Date:  
+ 
+, 20 
+   
+Tenant:  
+ 
+ 
+ 
+ 
+ 
+    
+Signature: ______________________________________
+Tenant:  
+ 
+ 
+ 
+ 
+ 
+    
+Signature: ______________________________________
+Tenant's Broker:  
+ 
+ 
+ 
+ 
+    
+Broker's DRE #:  
+ 
+ 
+ 
+ 
+     
+is the broker for: ̆ Tenant
+                           ̆ both Tenant and Landlord (dual agent)
+Tenant's Agent:   
+ 
+ 
+ 
+ 
+    
+Agent's DRE #:   
+ 
+ 
+ 
+ 
+             
+is ̆ Tenant's agent (salesperson or broker-associate)
+    ̆ both Tenant's and Landlord's agent (dual agent) 
+Signature:  
+ 
+ 
+ 
+ 
+ 
+     
+Address:  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+Phone:  
+ 
+        Cell:  
+ 
+ 
+    
+Email:
+
+EXTRACTION INSTRUCTIONS:
+1. Identify ALL clause types present, even if they don't match the section name
+2. Look for semantic indicators:
+   - Dates, durations, "commence", "expire" → Lease Term
+   - Currency, "payment", "monthly", amounts → Rent
+   - "repair", "maintain", "responsible for" → Maintenance
+   - "assign", "sublet", "transfer" → Assignment
+   - "insurance", "liability", "coverage" → Insurance
+   - "use", "purpose", "business type" → Use of Premises
+   - "entry", "access", "landlord may" → Entry Rights
+   - "damage", "fire", "destroyed" → Casualty
+   - Legal terms, "default", "breach" → Legal Provisions
+
+3. Extract whatever information IS available, even if incomplete
+4. For uncertain matches, include with lower confidence
+5. Include any useful legal text that doesn't fit categories in "miscellaneous_clauses"
+6. Identify risk factors:
+   - Missing important terms (e.g., no notice period)
+   - One-sided provisions favoring landlord
+   - Placeholder values like [AMOUNT] or TBD
+   - Ambiguous or undefined terms
+
+Return JSON in this format:
+{
+  "detected_clauses": [
+    {
+      "clause_type": "rent",  // or "term", "insurance", "entry", etc.
+      "confidence": 0.95,  // 0.0 to 1.0
+      "detection_method": "Found currency amount with 'monthly' keyword",
+      "extracted_data": {
+        "base_rent": "$5,000/month",
+        "payment_date": "1st of month",
+        "grace_period": "5 days",
+        "late_fee": "[AMOUNT]"  // Include placeholders as-is
+      },
+      "supporting_text": "Relevant text excerpt...",
+      "summary": "Monthly rent of $5,000 due on 1st with 5-day grace period",
+      "risk_tags": ["placeholder_late_fee"]  // Add risk tags here
+    }
+  ],
+  "miscellaneous_clauses": {
+    // Any other important legal content that doesn't fit standard categories
+  }
+}
+
+REMEMBER: 
+- Always extract something meaningful
+- Use inference to identify clauses even in wrong sections
+- Flag risks and placeholders
+- Never return empty results if text contains legal content

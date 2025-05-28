@@ -1,1 +1,6 @@
-NO RESPONSE
+{
+  "assignment_allowed": "with_consent",
+  "consent_required": "yes",
+  "consent_standard": "not unreasonably withheld",
+  "restrictions": "includes any subletting or assignment which would otherwise occur by operation of law, merger, consolidation, reorganization, transfer or other change of Tenant’s corporate or proprietary structure, or an assignment or subletting to or by a receiver or trustee in any federal or state bankruptcy, insolvency or other similar proceedings"
+}

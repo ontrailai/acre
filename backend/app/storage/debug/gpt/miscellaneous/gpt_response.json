@@ -1,0 +1,101 @@
+{
+  "detected_clauses": [
+    {
+      "clause_type": "facts",
+      "confidence": 0.9,
+      "detection_method": "Identified roles of Landlord and Tenant in the rental agreement",
+      "extracted_data": {
+        "landlord": "[Landlord Name]",
+        "tenant": "[Tenant Name]",
+        "premises": "[Premises Description]",
+        "project": "[Project Name]"
+      },
+      "supporting_text": "Landlord, as the Landlord, rents to Tenant, as the Tenant, the Premises referred to as [Premises Description], which is part of the Project known as [Project Name].",
+      "summary": "Identified parties involved in the lease and the description of the premises.",
+      "risk_tags": ["placeholder_landlord", "placeholder_tenant", "placeholder_premises", "placeholder_project"]
+    },
+    {
+      "clause_type": "term",
+      "confidence": 0.95,
+      "detection_method": "Found keywords indicating rental agreement duration",
+      "extracted_data": {
+        "start_date": "[Start Date]",
+        "duration": "month-to-month",
+        "termination_notice": "30 days"
+      },
+      "supporting_text": "The rental agreement will commence [Start Date], and continue on a month-to-month basis. Either party, on 30-days’ written notice, may terminate this rental agreement.",
+      "summary": "Rental agreement starts on [Start Date] and is month-to-month with a 30-day termination notice.",
+      "risk_tags": ["placeholder_start_date"]
+    },
+    {
+      "clause_type": "possession",
+      "confidence": 0.9,
+      "detection_method": "Identified terms related to possession delivery and tenant rights",
+      "extracted_data": {
+        "possession_date": "[Possession Date]",
+        "hold_over_rent": "120% of previous rent",
+        "non_liability_for_rent": true,
+        "termination_if_possession_not_delivered": "10 days"
+      },
+      "supporting_text": "Possession to be delivered to Tenant on commencement of the rental agreement, or on [Possession Date]. If Landlord is unable to recover and deliver possession... Tenant may terminate the rental agreement if Landlord does not deliver possession within 10 days.",
+      "summary": "Possession is to be delivered on [Possession Date], with specific rights if possession is delayed.",
+      "risk_tags": ["placeholder_possession_date"]
+    },
+    {
+      "clause_type": "rent",
+      "confidence": 0.95,
+      "detection_method": "Identified currency amounts and payment terms",
+      "extracted_data": {
+        "base_rent": "$5,000/month",
+        "payment_date": "1st of month",
+        "grace_period": "5 days",
+        "late_fee": "[AMOUNT]",
+        "interest_rate": "18%"
+      },
+      "supporting_text": "Tenant to pay, in advance, $5,000 monthly rent on the first day of each month... Tenant to pay a charge of $[AMOUNT]... interest will accrue from the due date on the amount at 18% per annum until paid.",
+      "summary": "Monthly rent of $5,000 due on the 1st with a 5-day grace period and late fees applicable.",
+      "risk_tags": ["placeholder_late_fee"]
+    },
+    {
+      "clause_type": "insurance",
+      "confidence": 0.9,
+      "detection_method": "Identified insurance requirements for Tenant",
+      "extracted_data": {
+        "liability_insurance_amount": "[AMOUNT]",
+        "fire_insurance": "100% of replacement value"
+      },
+      "supporting_text": "Tenant will obtain and maintain commercial general liability... Tenant will obtain and maintain a standard fire insurance policy with extended coverage for theft and vandalism to the extent of 100% of the replacement value.",
+      "summary": "Tenant must maintain liability insurance of at least [AMOUNT] and fire insurance covering 100% of replacement value.",
+      "risk_tags": ["placeholder_insurance_amount"]
+    },
+    {
+      "clause_type": "entry",
+      "confidence": 0.85,
+      "detection_method": "Identified terms regarding Landlord's right to enter",
+      "extracted_data": {
+        "notice_period": "24 hours"
+      },
+      "supporting_text": "Tenant agrees to make the Premises available on 24 hours' notice for entry by Landlord for necessary repairs, alterations, or inspections.",
+      "summary": "Landlord may enter the premises with 24 hours' notice for necessary reasons.",
+      "risk_tags": []
+    },
+    {
+      "clause_type": "default_remedies",
+      "confidence": 0.9,
+      "detection_method": "Identified provisions related to Tenant's breach",
+      "extracted_data": {
+        "future_rental_losses": true
+      },
+      "supporting_text": "If Tenant breaches any provision of this rental agreement, Landlord may exercise its rights, including the right to collect future rental losses after forfeiture of possession.",
+      "summary": "Landlord has rights to collect future rental losses if Tenant breaches the agreement.",
+      "risk_tags": []
+    }
+  ],
+  "miscellaneous_clauses": {
+    "additional_terms": "See attached addendum for additional terms. [See RPI Form 550-1]",
+    "attorney_fees": "In any action to enforce this rental agreement, the prevailing party is entitled to receive attorney fees.",
+    "governing_law": "This rental agreement is to be enforced under California law.",
+    "entire_agreement": "This rental agreement reflects the entire agreement between the parties.",
+    "flood_hazard_notice": "Landlord has actual knowledge the property is located in a special flood hazard area or an area of potential flooding. Tenant may obtain information about flood and other hazards at http://myhazards.caloes.ca.gov/. Landlord's insurance does not cover Tenant’s possessions."
+  }
+}

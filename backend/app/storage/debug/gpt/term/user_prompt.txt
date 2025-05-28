@@ -1,0 +1,54 @@
+Extract lease term information from this clause:
+
+CLAUSE TEXT:
+Confirmation of Commencement and Termination.  Landlord and Tenant 
+at Landlord’s option and request after (a) the Commencement Date, (b) the Rent Commencement 
+Date or (c) the expiration of the Term or any earlier termination of this Lease by action of law or 
+in any other manner, shall confirm in writing by instrument in recordable form that, such 
+commencement, rent commencement or such termination has occurred, or in the case of 
+Termination Date that it will occur on the date computed as specified herein, setting forth 
+therein, the Commencement Date, the Rent Commencement Date and/or the Termination Date.  
+3.2 
+Surrender.  Tenant, at its expense at the expiration of the Term or any earlier 
+termination of this Lease, shall (a) promptly surrender to Landlord possession of the Premises 
+(including any fixtures or other improvements which are owned by Landlord) in good order and 
+repair (ordinary wear and tear excepted) and broom clean, (b) remove therefrom all signs, goods, 
+effects, machinery, fixtures and equipment used in conducting Tenant’s trade or business which 
+are neither part of the Building Service Equipment nor owned by Landlord, and (c) repair any 
+damage caused by such removal.   
+3.3 
+Holding Over.  If Tenant continues to occupy the Premises after the 
+expiration of the Term or any earlier termination of this Lease after obtaining Landlord’s 
+express, written consent thereto, then:  
+(a) 
+such occupancy (unless the parties hereto otherwise agree in writing) shall be 
+deemed to be under a month-to-month tenancy, which shall continue until either party hereto 
+notifies the other in writing, at least one month before the end of any calendar month, that the 
+notifying party elects to terminate such tenancy at the end of such calendar month, in which 
+event such tenancy shall so terminate;  
+(b) 
+anything in this section to the contrary notwithstanding, the Base Rent payable for 
+each monthly period after the expiration of the Term or earlier termination of the Lease shall 
+equal the sum of (a) monthly Base Rent for the month immediately preceding the month in 
+which the expiration of the Term or earlier termination of this Lease occurs, multiplied by 150%, 
+plus (b) the Rent payable under
+; and  
+ Section 4.1
+(c) 
+except as provided in this Section 3.3, such month-to-month tenancy shall be on 
+the same terms and subject to the same conditions as those set forth in this Lease; provided, 
+however, that if Landlord gives Tenant, at least one month before the end of any calendar month 
+during such month-to-month tenancy, written notice that such terms and conditions (including 
+any thereof relating to the amount and payment of Rent) shall, after such month, be modified in 
+any manner specified in such notice, then such tenancy shall, after such month, be upon the said 
+terms and subject to the said conditions, as so modified. 
+Notwithstanding the foregoing, if Tenant continues to occupy the Premises after the expiration of 
+the Term or any earlier termination of this Lease without obtaining Landlord’s express, written
+
+Return JSON with these fields only:
+{
+  "start_date": "lease start date",
+  "end_date": "lease end date",
+  "term_length": "lease duration",
+  "renewal_options": "renewal options if any"
+}

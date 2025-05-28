@@ -1,0 +1,9 @@
+Extract key information from this lease clause:
+
+CLAUSE TEXT:
+Landlord will provide all reasonable utility services, including domestic hot and cold 
+water, heating, air conditioning and electricity.  
+Landlord will not be liable for any loss that may result from the quality, quantity, 
+interruption, or failure of any such utilities or services under any circumstances.
+
+Return JSON with the most important facts from this clause. Use descriptive field names.

@@ -1,0 +1,83 @@
+[
+  {
+    "category": "Premises",
+    "required_keywords": [
+      "premises",
+      "demised",
+      "leased space",
+      "property"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Maintenance",
+    "required_keywords": [
+      "maintenance",
+      "repair",
+      "condition"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Use",
+    "required_keywords": [
+      "use",
+      "purpose",
+      "permitted",
+      "conduct"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Assignment",
+    "required_keywords": [
+      "assignment",
+      "sublet",
+      "transfer"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Insurance",
+    "required_keywords": [
+      "insurance",
+      "liability",
+      "indemnity"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Default",
+    "required_keywords": [
+      "default",
+      "remedies",
+      "breach"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Building Services",
+    "required_keywords": [
+      "building services",
+      "janitorial",
+      "hvac"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Tenant Improvements",
+    "required_keywords": [
+      "tenant improvements",
+      "improvements"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Operating Expenses",
+    "required_keywords": [
+      "opex",
+      "operating expenses"
+    ],
+    "match_found": false
+  }
+]

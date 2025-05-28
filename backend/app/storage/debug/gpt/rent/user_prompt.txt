@@ -1,0 +1,54 @@
+Extract rent information from this lease clause:
+
+CLAUSE TEXT:
+Rent. “Rent” shall mean all Base Rent, Taxes, Food Court Maintenance 
+Fees, and any other amounts that Tenant is or becomes obligated to pay Landlord under this 
+Lease.  Tenant shall pay Landlord Rent without any deduction, recoupment, set-off or counter-
+claim except as otherwise set forth herein and with respect to any final judgments Tenant obtains 
+against Landlord.  Tenant shall pay Landlord an annual rent (the “Base Rent”) pursuant to 
+Section 1.4 as set forth in the Lease Schedule and adjusted as provided in Section 1.4. 
+4.2 
+Rentable Area.  The measurement of the number of square feet of the 
+Premises shall be conducted by Landlord pursuant to this 
+  As soon as reasonably 
+practicable after Substantial Completion of Landlord’s Work, Landlord shall actually measure 
+the rentable area of the Premises and the Building and shall deliver to Tenant an architect’s 
+certificate confirming the rentable square footage of the Premises and the useable square footage 
+of the Building.  All measurements will be made in accordance with the most recent standards 
+established by the Building Owners and Managers Association (commonly known as “BOMA”) 
+for the measurement of retail and/or civic space as appropriate.  If the Premises rentable area is 
+different than as set forth in the Premises definition above or in the Lease Schedule and/or the 
+Common Areas are different than as set forth in the Building definition above, then Base Rent 
+and Tenant’s Pro Rata Share will be appropriately adjusted based on such actual usable area.  
+The area as so computed is referred to herein as the Net Usable Area.  The Net Usable Area shall 
+be multiplied by a factor, as set forth in the Lease Schedule (load factor) to determine the Gross 
+Rentable Area. The parties hereto recognize that the Premises for all purposes herein shall be 
+deemed to be as set forth herein; provided, that if at any time hereafter any portion of the 
+Premises becomes no longer subject to this Lease, “Premises” shall thereafter mean so much 
+thereof as remains subject to this Lease.  
+Section 4.2.
+4.3 
+Payment of Rent.   
+4.3.1 Payment of Base Rent.  The Base Rent for any Lease Year shall be due 
+and payable to Landlord in twelve (12) consecutive, equal monthly installments, in advance, 
+without deduction, offset, prior notice or demand, on the first (1st) day of each calendar month 
+during such Lease Year commencing on the Rent Commencement Date, at the address set forth 
+in Section 
+X1.6X, or at such other place or to such other person as Landlord may from time to time 
+designate by notice hereunder.  In addition, the Base Rent for the first full calendar month of the 
+Term shall be due and payable upon execution of the Lease.  If the Lease Term commences or 
+terminates on other than the first day of a calendar month, then the Base Rental for said partial 
+month shall be prorated on a per diem basis (based on a 30-day month), and shall be paid in full 
+on the first day of such partial month in which the term commences.  All payments shall be made 
+in lawful money of the United States of America.  
+4.3.2 Payment of all other Rent.  Except for Base Rent which shall be paid in 
+accordance with Section 4.3.1, and except as is otherwise set forth herein, Rent accruing to 
+Landlord under this Lease, shall be due and payable when the installment of Base Rent next
+
+Return JSON with these fields only:
+{
+  "base_rent_amount": "monthly rent amount",
+  "payment_date": "when rent is due",
+  "escalations": "any rent increases mentioned",
+  "security_deposit": "deposit amount if mentioned"
+}

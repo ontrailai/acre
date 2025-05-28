@@ -1,0 +1,27 @@
+{
+  "total_nodes": 19,
+  "leaf_nodes": 18,
+  "gpt_calls": 18,
+  "gpt_failures": 0,
+  "processing_time": 16.05521512031555,
+  "clause_categories": {
+    "pet_policy": 2,
+    "parking": 2,
+    "signature": 6,
+    "security_deposit": 1,
+    "use": 1,
+    "rent": 1,
+    "asbestos_disclosure": 1,
+    "signature_acknowledgment": 1,
+    "health_and_safety": 1,
+    "environmental_compliance": 1,
+    "lead_disclosure": 1
+  },
+  "risk_levels": {
+    "high": 4,
+    "medium": 11,
+    "low": 12
+  },
+  "total_tokens_used": 10813,
+  "avg_tokens_per_chunk": 600.7222222222222
+}

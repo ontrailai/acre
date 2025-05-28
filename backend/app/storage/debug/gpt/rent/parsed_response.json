@@ -1,0 +1,6 @@
+{
+  "base_rent_amount": "equal monthly installments",
+  "payment_date": "first (1st) day of each calendar month",
+  "escalations": "adjusted as provided in Section 1.4",
+  "security_deposit": null
+}

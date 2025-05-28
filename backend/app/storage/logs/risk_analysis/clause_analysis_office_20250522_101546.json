@@ -1,0 +1,1376 @@
+[
+  {
+    "clause_key": "lease_effective_date",
+    "confidence": 0.5,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parties_involved",
+    "confidence": 0.7,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "lease_premises_definition",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "building_description",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "premises_description",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "lease_term_details",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "option_to_extend",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "base_rent",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "undefined_escalation",
+      "uncapped_cpi",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_deposit",
+    "confidence": 0.99,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_address",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "tenant_address",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "tenant_improvements",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "undefined_ti_allowance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "permitted_use",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "restrictive_use"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "permitted_name",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "definitions",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "other_terms",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "lease_commencement_and_termination_confirmation",
+    "confidence": 0.95,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "lease_surrender",
+    "confidence": 0.95,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "lease_holding_over",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "increased_base_rent",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "base_rent_payment_structure",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "definition_of_rent",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "adjustment_of_base_rent_based_on_space_measurement",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "undefined_escalation"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "late_payment",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "tax_responsibilities",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_prorations",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "Food_Court_Costs",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Food_Court_Contribution",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "Food_Court_Maintenance_Fee",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Percentage_Rent",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "undefined_escalation"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Gross_Sales_Reporting",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "percentage_rent_adjustments",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "undefined_escalation"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "overpayment_and_underpayment",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "audit_rights",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "audit_clause",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "exclusive_use_rights",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "compliance_with_laws",
+    "confidence": 0.99,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "non_disturbance",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "noise_control",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "maintenance_responsibilities",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "ada_compliance",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "parking",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "signs",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "floor_load",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "ceiling_access",
+    "confidence": 0.99,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "mechanics_liens",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_consent_for_work",
+    "confidence": 0.97,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "Building_Common_Areas",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "non_exclusive_license",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "building_alterations_and_remodels",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlords_control_and_right_to_restrict_use_of_common_areas",
+    "confidence": 0.97,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "liability_of_landlord",
+    "confidence": 0.99,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "incomplete_insurance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "hazardous_materials",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "indemnification_clause",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "definition_of_terms",
+    "confidence": 0.99,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "workers_compensation_and_employers_liability_insurance",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "incomplete_insurance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "commercial_general_liability_insurance",
+    "confidence": 0.98,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "Business_Automobile_Liability_Insurance",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "Property_Insurance",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "no_mutual_subrogation",
+      "undefined_ti_allowance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Rent_Continuation_Insurance",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "Additional_Insured_and_Waiver_of_Subrogation",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "Policy_Cancellation_Endorsement",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "insurance_requirements",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_liability",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "insurance_impact_clause",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "utilities_provided_by_tenant",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "utilities_provided_by_landlord",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "utility_interruptions",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Landlord_Repair_Responsibilities",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Tenant_Repair_Responsibilities",
+    "confidence": 0.99,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "maintenance_costs",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "refuse_maintenance",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Landlord_Approval_for_Alterations",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Acceptance_of_Possession",
+    "confidence": 0.99,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "condition_of_premises",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "construction_responsibilities",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "fixtures_and_improvements",
+    "confidence": 0.97,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "undefined_ti_allowance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_right_of_entry",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "continuation_of_obligations",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "termination_rights",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "repair_obligations",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_abatement",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "waiver_of_termination_rights",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "unclear_termination_notice"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "termination_clause",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "lease_termination_on_condemnation",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_adjustment_on_condemnation",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "condemnation_award_entitlement",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "restoration_post_condemnation",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "date_of_condemnation_definition",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlords_consent_required",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "consent_not_waiver",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "transfer_approval",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "arbitrary_consent_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "acceptance_of_rent",
+    "confidence": 0.99,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "conditions_of_consent",
+    "confidence": 0.97,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "transfer_costs",
+    "confidence": 0.99,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "profits_from_transfer",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rules_and_regulations",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "subordination_clause",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "mortgagee_unilateral_subordination",
+    "confidence": 0.95,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "attornment_clause",
+    "confidence": 0.97,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "tenant_default_triggers",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "bankruptcy_and_insolvency_events",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "default_and_cure_period",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_remedies",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "termination_compensation",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_default",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_default_remedies",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Landlord_Liability",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "Waiver_of_Jury_Trial",
+    "confidence": 0.99,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "Landlords_Security_Interest",
+    "confidence": 0.97,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "estoppel_certificate",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "quiet_enjoyment",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "notices",
+    "confidence": 0.99,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "notice_provisions",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "effectiveness",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "complete_understanding",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "amendment",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "waiver",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "applicable_law",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "jurisdiction_and_venue",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "force_majeure",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "broker_commissions",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "no_partnership_or_joint_venture",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "remedies_cumulative",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "severability",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "authority",
+    "confidence": 0.98,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "joint_and_several_liability",
+    "confidence": 0.99,
+    "matched_heuristics": [
+      "incomplete_insurance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "recordation_prohibition",
+    "confidence": 0.97,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "time_of_essence",
+    "confidence": 0.99,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "guaranty_of_lease",
+    "confidence": 0.95,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "guaranty_agreement_requirement",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "execution_of_lease",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "signature_section",
+    "confidence": 0.7,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "common_areas",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "facilities_usage",
+    "confidence": 0.99,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "window_coverings",
+    "confidence": 0.97,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "signage",
+    "confidence": 0.95,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "electrical_and_machinery_compliance",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "access_and_security",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "prohibited_uses",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "energy_conservation",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "roof_repair_and_maintenance",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "energy_management",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "daily_closure_and_utilities",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "service_animals",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "rules_and_regulations_modification",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "non_enforcement_of_rules",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "tenant_responsibilities",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard",
+      "undefined_ti_allowance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "utility_conservation_requirement",
+    "confidence": 0.95,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "university_liability_exclusion",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "incomplete_insurance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "telecommunications_services",
+    "confidence": 0.98,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "grease_interceptor_trap",
+    "confidence": 0.99,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "sprinkler_system_modification",
+    "confidence": 0.97,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "building_documentation_requirements",
+    "confidence": 0.95,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "alterations_approval",
+    "confidence": 0.98,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "tenant_repair_responsibilities",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_repair_charges_due_to_tenant_abuse",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_repair_charges_for_common_areas_due_to_tenant_abuse",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "food_facility_maintenance_and_inspection",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "equipment_and_furnishings",
+    "confidence": 0.98,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "common_area_provision",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "handicap_accessibility",
+    "confidence": 0.97,
+    "matched_heuristics": [
+      "undefined_ti_allowance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "security_responsibilities",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "emergency_services_protocol",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "employment_restrictions",
+    "confidence": 0.97,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "health_and_safety_compliance",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "liability_release_for_food_borne_illnesses",
+    "confidence": 0.99,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "incomplete_insurance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "specific_health_division_requirements",
+    "confidence": 0.97,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "refuse_and_trash_management",
+    "confidence": 0.98,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "common_area_trash_removal_costs",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "environmental_conservation_programs",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "sustainable_practices_encouragement",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "restroom_facilities",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "sprinkler_system",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "utility_provision",
+    "confidence": 1.0,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "utility_liability",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "incomplete_insurance"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_general_maintenance",
+    "confidence": 0.98,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_grounds_maintenance",
+    "confidence": 0.98,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "common_seating_area_provision",
+    "confidence": 1.0,
+    "matched_heuristics": [
+      "gpt_risk_tags",
+      "no_measurement_standard"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "food_borne_illness_reporting",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "pest_control_services",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "date_modification_clause",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "limitation_on_extension_rights",
+    "confidence": 0.99,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  }
+]

@@ -1,0 +1,107 @@
+{
+  "detected_clauses": [
+    {
+      "clause_type": "facts",
+      "confidence": 0.9,
+      "detection_method": "Identified roles of Landlord and Tenant, and reference to Premises and Project.",
+      "extracted_data": {
+        "landlord": "Landlord",
+        "tenant": "Tenant",
+        "premises": "Premises",
+        "project": "Project"
+      },
+      "supporting_text": "Landlord, as the Landlord, rents to Tenant, as the Tenant, the Premises referred to as ... which is part of the Project known as ...",
+      "summary": "Identifies parties involved and the property being leased.",
+      "risk_tags": []
+    },
+    {
+      "clause_type": "term",
+      "confidence": 0.95,
+      "detection_method": "Found keywords indicating rental agreement commencement and termination conditions.",
+      "extracted_data": {
+        "commencement_date": "[DATE]",
+        "duration": "month-to-month",
+        "termination_notice": "30 days"
+      },
+      "supporting_text": "The rental agreement will commence [DATE] and continue on a month-to-month basis. Either party, on 30-days\u2019 written notice, may terminate this rental agreement.",
+      "summary": "Rental agreement starts on [DATE] and is month-to-month with a 30-day termination notice.",
+      "risk_tags": []
+    },
+    {
+      "clause_type": "rent",
+      "confidence": 0.95,
+      "detection_method": "Identified currency amounts and payment terms.",
+      "extracted_data": {
+        "monthly_rent": "$5,000",
+        "payment_due_date": "1st of each month",
+        "grace_period": "5 days",
+        "late_fee": "$[AMOUNT] or [PERCENT]% of delinquent rent"
+      },
+      "supporting_text": "Tenant to pay, in advance, $5,000 monthly rent on the first day of each month... Tenant to pay a charge of $[AMOUNT] or [PERCENT]% of the delinquent rent payment...",
+      "summary": "Monthly rent of $5,000 due on the 1st, with a late fee structure.",
+      "risk_tags": []
+    },
+    {
+      "clause_type": "possession",
+      "confidence": 0.9,
+      "detection_method": "Identified conditions regarding possession delivery and tenant's rights.",
+      "extracted_data": {
+        "possession_delivery": "on commencement of the rental agreement",
+        "tenant_rights": "terminate if possession not delivered within 10 days"
+      },
+      "supporting_text": "Possession to be delivered to Tenant on commencement of the rental agreement... Tenant may terminate the rental agreement if Landlord does not deliver possession within 10 days.",
+      "summary": "Possession is to be delivered at the start of the lease, with tenant rights to terminate if delayed.",
+      "risk_tags": []
+    },
+    {
+      "clause_type": "maintenance",
+      "confidence": 0.85,
+      "detection_method": "Identified responsibilities for maintenance and repair.",
+      "extracted_data": {
+        "tenant_responsibility": "keep the Premises in good order and repair",
+        "landlord_responsibility": "maintain common areas and structures"
+      },
+      "supporting_text": "Tenant will keep the Premises and its improvements in good order... Landlord will maintain in good order, condition and repair the structures and common area components...",
+      "summary": "Tenant is responsible for maintaining the Premises, while the Landlord maintains common areas.",
+      "risk_tags": []
+    },
+    {
+      "clause_type": "insurance",
+      "confidence": 0.95,
+      "detection_method": "Identified insurance requirements for Tenant.",
+      "extracted_data": {
+        "liability_insurance": "minimum amount of $[AMOUNT]",
+        "fire_insurance": "100% of replacement value"
+      },
+      "supporting_text": "Tenant will obtain and maintain commercial general liability... Tenant will obtain and maintain a standard fire insurance policy...",
+      "summary": "Tenant must maintain liability and fire insurance at specified coverage levels.",
+      "risk_tags": []
+    },
+    {
+      "clause_type": "use_of_premises",
+      "confidence": 0.9,
+      "detection_method": "Identified permitted uses and restrictions on the Premises.",
+      "extracted_data": {
+        "permitted_use": "[USE]",
+        "prohibited_activities": "unlawful purposes, nuisances"
+      },
+      "supporting_text": "The Tenant\u2019s use of the Premises will be [USE]. No other use of the Premises is permitted.",
+      "summary": "Tenant's use of the Premises is restricted to specified purposes.",
+      "risk_tags": []
+    },
+    {
+      "clause_type": "default_remedies",
+      "confidence": 0.85,
+      "detection_method": "Identified consequences of Tenant's breach.",
+      "extracted_data": {
+        "landlord_rights": "collect future rental losses after forfeiture of possession"
+      },
+      "supporting_text": "If Tenant breaches any provision of this rental agreement, Landlord may exercise its rights, including the right to collect future rental losses after forfeiture of possession.",
+      "summary": "Landlord has rights to collect losses if Tenant breaches the agreement.",
+      "risk_tags": []
+    }
+  ],
+  "miscellaneous_clauses": {
+    "flood_hazard_notice": "Landlord has actual knowledge the property is located in a special flood hazard area or an area of potential flooding. Tenant may obtain information about flood and other hazards at http://myhazards.caloes.ca.gov/. Landlord's insurance does not cover Tenant\u2019s possessions."
+  }
+}

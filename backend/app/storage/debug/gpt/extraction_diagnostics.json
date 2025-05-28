@@ -1,26 +1,34 @@
 {
-  "total_segments": 4,
-  "successful_segments": 0,
-  "failed_segments": 3,
-  "empty_segments": 1,
+  "total_segments": 3,
+  "successful_segments": 3,
+  "failed_segments": 0,
+  "empty_segments": 0,
+  "inferred_clauses": 16,
+  "risk_tags_found": 27,
   "segment_results": [
     {
-      "section_name": "preamble",
-      "success": false,
-      "error": "No clauses extracted",
-      "clauses_extracted": 0
+      "section_name": "miscellaneous",
+      "success": true,
+      "error": null,
+      "clauses_extracted": 3,
+      "inferred_clauses": 3,
+      "risk_tags": 1
     },
     {
-      "section_name": "insurance",
-      "success": false,
-      "error": "No clauses extracted",
-      "clauses_extracted": 0
+      "section_name": "miscellaneous",
+      "success": true,
+      "error": null,
+      "clauses_extracted": 8,
+      "inferred_clauses": 8,
+      "risk_tags": 23
     },
     {
-      "section_name": "assignment",
-      "success": false,
-      "error": "No clauses extracted",
-      "clauses_extracted": 0
+      "section_name": "miscellaneous",
+      "success": true,
+      "error": null,
+      "clauses_extracted": 5,
+      "inferred_clauses": 5,
+      "risk_tags": 3
     }
   ]
 }

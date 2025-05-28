@@ -1,0 +1,35 @@
+Extract key information from this lease clause:
+
+CLAUSE TEXT:
+Landlord Approval.  Tenant shall not make any alteration, improvement or 
+addition (collectively “Alterations”) to the Premises without first (a) presenting to Landlord 
+plans, drawn and sealed by a licensed architect or space planner of a reasonable scale and 
+amount of detail to clarify the work to be done, and specifications, therefore and obtaining 
+Landlord’s written consent thereto (which shall not, in the case of (i) non-structural interior 
+Alterations, or (ii) Alterations which would not affect any electrical, mechanical, plumbing or 
+other Building systems, be unreasonably withheld so long as such Alterations will not violate 
+applicable law or the provisions of this Lease, or impair the value of the Premises or the Building 
+or be visible from the exterior of the Building) and (b) obtaining any and all governmental 
+permits or approvals for such Alterations, which are required by applicable law; provided, that (i) 
+any and all contractors or workmen performing such Alterations must first be approved by 
+Landlord, (ii) all work is performed in a good and workmanlike manner in compliance with all 
+applicable codes, rules, regulations and ordinances, and (iii) all persons, contractors, tradesman 
+or workman performing such improvements or alteration work shall be a licensed tradesman for 
+the type of work they are doing on the property, evidence of which shall be submitted to 
+Landlord prior to the commencement of the work and (iv) Tenant shall restore the Premises to its 
+condition immediately before such Alterations were made, free of Tenant’s fixtures and furniture 
+by not later than the date on which Tenant vacates the Premises or the Termination Date, 
+whichever is earlier, with the exception of all Landlord approved partitions or other specified 
+Alterations.  Tenant, at its own expense, shall repair promptly any damage to the Building caused 
+by bringing therein any property for its use, or by the installation or removal of such property, 
+regardless of fault or by whom such damage is caused.  As a further condition for approving any 
+such Alterations, Landlord shall have the right to require Tenant and/or its contractor(s) to 
+execute a copy of Landlord’s “Design Construction Standards and /or Appendices Design/ 
+Construction Standards.”  
+13.2 
+Acceptance of Possession.  In addition to the following, upon taking
+possession of the Premises, Tenant shall for all purposes of this Lease be deemed to have
+accepted the Premises and the Building and to have acknowledged them to be in the condition
+called for hereunder.
+
+Return JSON with the most important facts from this clause. Use descriptive field names.

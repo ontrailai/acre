@@ -1,0 +1,10 @@
+[
+  {
+    "category": "Operating Expenses",
+    "required_keywords": [
+      "opex",
+      "operating expenses"
+    ],
+    "match_found": false
+  }
+]

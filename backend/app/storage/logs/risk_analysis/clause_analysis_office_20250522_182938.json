@@ -1,0 +1,474 @@
+[
+  {
+    "clause_key": "unknown_data",
+    "confidence": 0.7,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "table_tenant_roster_0",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_unknown_1",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_expense_breakdown_2",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_tenant_roster_3",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_expense_breakdown_4",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_tenant_roster_5",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_rent_schedule_6",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_expense_breakdown_7",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_tenant_roster_8",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_tenant_roster_9",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_tenant_roster_10",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_tenant_roster_11",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_tenant_roster_12",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_expense_breakdown_13",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_tenant_roster_14",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_unknown_15",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_rent_schedule_16",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_tenant_roster_17",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_expense_breakdown_18",
+    "confidence": 0.16000000000000003,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.16000000000000003"
+  },
+  {
+    "clause_key": "table_cam_allocation_19",
+    "confidence": 0.32,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.32"
+  },
+  {
+    "clause_key": "table_unknown_20",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_unknown_21",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_unknown_22",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_23",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_24",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "undefined_ti_allowance"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_unknown_25",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_26",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_rent_schedule_27",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_cam_allocation_28",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_option_schedule_29",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_measurement_standard"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_30",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_31",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_32",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_33",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_34",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_unknown_35",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_36",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_37",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_38",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_39",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights",
+      "undefined_ti_allowance"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_40",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "undefined_ti_allowance"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_41",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_42",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_cam_allocation_43",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_44",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_45",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_option_schedule_46",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_47",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_48",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_49",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_50",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "undefined_ti_allowance"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_51",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_tenant_roster_52",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_unknown_53",
+    "confidence": 0.2,
+    "matched_heuristics": [],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_54",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  },
+  {
+    "clause_key": "table_expense_breakdown_55",
+    "confidence": 0.2,
+    "matched_heuristics": [
+      "no_opex_cap",
+      "no_audit_rights"
+    ],
+    "skipped": true,
+    "reason": "Low confidence: 0.2"
+  }
+]

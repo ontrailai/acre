@@ -1,0 +1,18 @@
+{
+  "utility_services_provided": [
+    "domestic hot water",
+    "domestic cold water",
+    "heating",
+    "air conditioning",
+    "electricity"
+  ],
+  "landlord_liability": {
+    "not_liable_for": [
+      "loss from quality of utilities",
+      "loss from quantity of utilities",
+      "loss from interruption of utilities",
+      "loss from failure of utilities"
+    ],
+    "circumstances": "under any circumstances"
+  }
+}

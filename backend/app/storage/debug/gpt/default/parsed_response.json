@@ -1,0 +1,17 @@
+{
+  "event_of_default": {
+    "definition": "Any one or more of the following events shall constitute a default under the terms of this Lease.",
+    "conditions": [
+      {
+        "condition_number": "20.1.1",
+        "description": "Failure of Tenant to pay any Rent or other sum of money due to Landlord or any other person.",
+        "time_frame": "within ten (10) days after the same is due"
+      },
+      {
+        "condition_number": "20.1.2",
+        "description": "Sale of Tenant\u2019s interest in the Premises under attachment, execution or similar legal process.",
+        "requirement": "without Landlord\u2019s prior written approval"
+      }
+    ]
+  }
+}

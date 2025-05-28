@@ -1,0 +1,45 @@
+[
+  {
+    "category": "Maintenance",
+    "required_keywords": [
+      "maintenance",
+      "repair",
+      "condition"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Assignment",
+    "required_keywords": [
+      "assignment",
+      "sublet",
+      "transfer"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Building Services",
+    "required_keywords": [
+      "building services",
+      "janitorial",
+      "hvac"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Tenant Improvements",
+    "required_keywords": [
+      "tenant improvements",
+      "improvements"
+    ],
+    "match_found": false
+  },
+  {
+    "category": "Operating Expenses",
+    "required_keywords": [
+      "opex",
+      "operating expenses"
+    ],
+    "match_found": false
+  }
+]

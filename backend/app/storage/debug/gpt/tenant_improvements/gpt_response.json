@@ -1,0 +1,45 @@
+{
+  "landlord_approval": {
+    "alterations": {
+      "definition": "Any alteration, improvement or addition to the Premises",
+      "requirements": [
+        {
+          "step": "Present plans",
+          "details": "Plans drawn and sealed by a licensed architect or space planner"
+        },
+        {
+          "step": "Obtain written consent",
+          "conditions": [
+            "Non-structural interior alterations",
+            "Alterations not affecting building systems"
+          ],
+          "consent_condition": "Shall not be unreasonably withheld if compliant with law and lease provisions"
+        },
+        {
+          "step": "Obtain governmental permits",
+          "condition": "Required by applicable law"
+        }
+      ],
+      "contractor_requirements": {
+        "approval": "All contractors or workmen must be approved by Landlord",
+        "work_quality": "Performed in a good and workmanlike manner",
+        "compliance": "Must comply with all applicable codes, rules, regulations, and ordinances",
+        "licensing": "All workers must be licensed tradesmen for their type of work"
+      },
+      "restoration": {
+        "requirement": "Tenant must restore Premises to original condition",
+        "deadline": "By the date Tenant vacates or the Termination Date, whichever is earlier",
+        "exceptions": "Landlord approved partitions or specified alterations"
+      },
+      "damage_repair": {
+        "responsibility": "Tenant must repair any damage caused by property installation or removal",
+        "fault": "Regardless of fault"
+      },
+      "additional_condition": "Landlord may require execution of Design Construction Standards"
+    }
+  },
+  "acceptance_of_possession": {
+    "condition": "Upon taking possession, Tenant is deemed to have accepted the Premises and Building",
+    "acknowledgment": "Tenant acknowledges the condition of the Premises and Building"
+  }
+}

@@ -1,0 +1,46 @@
+Below is the common area section from a retail lease.
+Extract all relevant information and return as JSON. Be thorough but precise.
+
+LEASE TEXT:
+“Building Common Areas” shall mean those areas of the Building which 
+may be designated by Landlord, from time to time, as Common Areas.  As further described in 
+Landlord, in its sole and absolute discretion, from time to time, may relocate and/or 
+reconfigure the Building Common Areas in the Building.  Notwithstanding the foregoing, 
+Building Common Areas shall include all footways, sidewalks, general public lobbies, elevators, 
+stairwells, corridors, restrooms, excluding any such feature located on rentable square footage or 
+within any rented Building square footage.  Landlord shall designate a portion of the Building 
+Common Areas as Food Court Common Areas, which shall include those areas intended for use 
+Section 7.4,
+
+Return a JSON object where each key is a specific clause or term, and each value contains:
+- "structured_json": A structured representation of the clause data
+- "content": A concise explanation of what the clause means
+- "summary_bullet": A single bullet point summarizing the key information
+- "source_excerpt": The exact text from the lease that supports this extraction
+- "confidence_score": A number from 0.0 to 1.0 indicating your confidence
+- "risk_flags": An array of objects with "level" (low/medium/high) and "description"
+- "needs_review": Boolean indicating if human review is recommended
+
+Example response format:
+{
+  "lease_term": {
+    "structured_json": {
+      "start_date": "01/01/2023",
+      "end_date": "12/31/2028",
+      "initial_term_months": 60,
+      "has_renewal_options": true,
+      "renewal_options": [
+        {
+          "duration_months": 60,
+          "notice_period_months": 12
+        }
+      ]
+    },
+    "content": "The lease has an initial 5-year term starting January 1, 2023 with one 5-year renewal option.",
+    "summary_bullet": "5-year initial term (Jan 2023-Dec 2028) with one 5-year renewal option requiring 12 months' notice",
+    "source_excerpt": "The term of this Lease (the 'Term') shall commence on January 1, 2023 (the 'Commencement Date') and end on December 31, 2028, unless sooner terminated as provided herein.",
+    "confidence_score": 0.95,
+    "risk_flags": [],
+    "needs_review": false
+  }
+}

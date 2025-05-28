@@ -1,8 +1,7 @@
 from typing import Dict, List, Any, Tuple, Optional, Set
 from app.schemas import LeaseType, ClauseExtraction, RiskLevel, RiskFlag
 from app.utils.logger import logger
-from app.utils.risk_analysis.enums import ClauseCategory
-from app.utils.risk_analysis.clause_catalog import get_essential_clauses
+# Removed missing imports - using simplified essential clauses check
 import re
 import json
 import os
@@ -15,7 +14,7 @@ ANALYSIS_LOG_DIR = os.path.join("app", "storage", "logs", "risk_analysis")
 # Create log directory
 os.makedirs(ANALYSIS_LOG_DIR, exist_ok=True)
 
-def analyze_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -> Tuple[List[RiskFlag], List[Dict]]:
+def analyze_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -> Tuple[List[RiskFlag], List[str]]:
     """
     Analyze lease clauses for potential risks.
     
@@ -25,7 +24,7 @@ def analyze_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -
         
     Returns:
         - A list of risk flags with details
-        - A list of missing clauses metadata
+        - A list of missing clause names (strings)
     """
     try:
         # Initialize results
@@ -121,8 +120,11 @@ def analyze_risks(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -
         # Save analysis logs
         save_analysis_logs(clause_analysis_logs, lease_type)
         
-        logger.info(f"Risk analysis complete. Found {len(risk_flags)} risks and {len(missing_clauses)} missing clauses")
-        return risk_flags, missing_clauses
+        # Convert missing clauses from dict format to simple strings for the API response
+        missing_clause_names = [clause["category"] for clause in missing_clauses]
+        
+        logger.info(f"Risk analysis complete. Found {len(risk_flags)} risks and {len(missing_clause_names)} missing clauses")
+        return risk_flags, missing_clause_names
         
     except Exception as e:
         logger.error(f"Error analyzing risks: {str(e)}")
@@ -158,6 +160,7 @@ def save_analysis_logs(analysis_logs: List[Dict], lease_type: LeaseType):
 def check_missing_essential_clauses(clauses: Dict[str, ClauseExtraction], lease_type: LeaseType) -> List[Dict]:
     """
     Check for missing essential clauses based on lease type.
+    Now checks extracted clause types to avoid false positives.
     
     Args:
         clauses: Dictionary of extracted lease clauses
@@ -167,7 +170,22 @@ def check_missing_essential_clauses(clauses: Dict[str, ClauseExtraction], lease_
         List of dictionaries with missing clause metadata
     """
     # Get essential clauses for this lease type
-    essential_clauses = get_essential_clauses(lease_type)
+    essential_clauses = _get_essential_clauses_simple(lease_type)
+    
+    # Collect all found clause types from extracted clauses
+    found_clause_types = set()
+    
+    # Check structured data for clause_type field
+    for clause in clauses.values():
+        if clause.structured_data and isinstance(clause.structured_data, dict):
+            if 'clause_type' in clause.structured_data:
+                found_clause_types.add(clause.structured_data['clause_type'].lower())
+    
+    # Also check clause keys for types
+    for key in clauses.keys():
+        # Extract base type from key (e.g., "rent_data" -> "rent")
+        base_type = key.lower().replace("_data", "").replace("_clause", "").replace("_inferred", "")
+        found_clause_types.add(base_type)
     
     # Check for missing clauses
     missing = []
@@ -175,19 +193,30 @@ def check_missing_essential_clauses(clauses: Dict[str, ClauseExtraction], lease_
     for category, keywords in essential_clauses.items():
         found = False
         
-        # Check clause keys
-        for key in clauses.keys():
-            if any(keyword in key.lower() for keyword in keywords):
-                found = True
-                break
-                
+        # First check if this category exists in found clause types
+        if category in found_clause_types:
+            found = True
+        else:
+            # Check if any keyword matches found clause types
+            for keyword in keywords:
+                if keyword in found_clause_types:
+                    found = True
+                    break
+        
+        # If still not found, check clause keys
+        if not found:
+            for key in clauses.keys():
+                if any(keyword in key.lower() for keyword in keywords):
+                    found = True
+                    break
+                    
         # Also check in clause content
         if not found:
             for clause in clauses.values():
                 if any(keyword in clause.content.lower() for keyword in keywords):
                     found = True
                     break
-                
+                    
         # Check in structured data if available
         if not found:
             for clause in clauses.values():
@@ -871,6 +900,42 @@ def deduplicate_risks(risks: List[RiskFlag]) -> List[RiskFlag]:
             unique_risks.append(risk)
     
     return unique_risks
+
+def _get_essential_clauses_simple(lease_type: LeaseType) -> Dict[str, List[str]]:
+    """
+    Simple implementation of essential clauses for each lease type.
+    """
+    base_clauses = {
+        "premises": ["premises", "demised", "leased space", "property"],
+        "term": ["term", "duration", "commencement", "expiration"],
+        "rent": ["rent", "payment", "base rent", "minimum rent"],
+        "maintenance": ["maintenance", "repair", "condition"],
+        "use": ["use", "purpose", "permitted", "conduct"],
+        "assignment": ["assignment", "sublet", "transfer"],
+        "insurance": ["insurance", "liability", "indemnity"],
+        "default": ["default", "remedies", "breach"]
+    }
+    
+    if lease_type == LeaseType.RETAIL:
+        base_clauses.update({
+            "co_tenancy": ["co-tenancy", "cotenancy"],
+            "percentage_rent": ["percentage", "overage", "gross sales"],
+            "operating_hours": ["hours", "operation"]
+        })
+    elif lease_type == LeaseType.OFFICE:
+        base_clauses.update({
+            "building_services": ["building services", "janitorial", "hvac"],
+            "tenant_improvements": ["tenant improvements", "improvements"],
+            "operating_expenses": ["opex", "operating expenses"]
+        })
+    elif lease_type == LeaseType.INDUSTRIAL:
+        base_clauses.update({
+            "environmental": ["environmental", "compliance"],
+            "hazardous_materials": ["hazardous", "hazmat"]
+        })
+    
+    return base_clauses
+
 
 # TODO: Enhance the system with semantic similarity or embedding-based clause detection
 # This would involve:

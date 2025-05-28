@@ -5,11 +5,12 @@ import json
 import os
 from app.utils.logger import logger
 from app.core.advanced_chunker import chunk_lease
-from app.utils.risk_analysis.enums import ClauseCategory
+# Removed ClauseCategory import - using string values directly
 
 def segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[str, Any]]:
     """
     Segment a lease document into logical sections using the advanced chunking system.
+    Enhanced to detect hierarchical structure for AST support.
     Returns a list of dictionaries, each containing:
     - section_name: The name of the section (as determined by clause classification)
     - content: The text content of the section
@@ -79,6 +80,9 @@ def segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[str, An
         if not segments:
             logger.warning("Advanced chunking produced no valid segments, falling back to legacy segmentation")
             return legacy_segment_lease(text_content, lease_type)
+        
+        # Detect and preserve hierarchical structure if present
+        segments = preserve_hierarchy(segments)
             
         # Log segment statistics
         logger.info(f"Lease segmentation complete. Found {len(segments)} segments")
@@ -99,6 +103,55 @@ def segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[str, An
         logger.error(f"Error in advanced chunking: {str(e)}", exc_info=True)
         logger.warning("Falling back to legacy segmentation")
         return legacy_segment_lease(text_content, lease_type)
+
+
+def preserve_hierarchy(segments: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    Preserve hierarchical section numbering in segments for AST construction
+    """
+    import re
+    
+    # Pattern to detect hierarchical sections
+    hierarchy_pattern = re.compile(r'^(\d+(?:\.\d+)*|[A-Z]+(?:\.[A-Z]+)*|ARTICLE\s+[IVXLCDM]+)\s*[.\-:]?\s*(.*)', re.IGNORECASE)
+    
+    enhanced_segments = []
+    
+    for segment in segments:
+        section_name = segment.get('section_name', '')
+        # Also check parent_heading if section_name doesn't have hierarchy
+        parent_heading = segment.get('parent_heading', '')
+        
+        # Try to extract hierarchy from section_name first
+        match = hierarchy_pattern.match(section_name)
+        if not match and parent_heading:
+            # Try parent_heading if section_name didn't match
+            match = hierarchy_pattern.match(parent_heading)
+            if match:
+                # Use parent heading structure with segment's section name
+                segment['section_id'] = match.group(1)
+                segment['section_title'] = section_name
+                segment['has_hierarchy'] = True
+                segment['hierarchy_source'] = 'parent_heading'
+            else:
+                # No clear hierarchy
+                segment['section_id'] = None
+                segment['section_title'] = section_name
+                segment['has_hierarchy'] = False
+        elif match:
+            # Preserve the hierarchical structure from section_name
+            segment['section_id'] = match.group(1)
+            segment['section_title'] = match.group(2).strip() if match.group(2) else section_name
+            segment['has_hierarchy'] = True
+            segment['hierarchy_source'] = 'section_name'
+        else:
+            # No clear hierarchy
+            segment['section_id'] = None
+            segment['section_title'] = section_name
+            segment['has_hierarchy'] = False
+        
+        enhanced_segments.append(segment)
+    
+    return enhanced_segments
 
 
 def legacy_segment_lease(text_content: str, lease_type: LeaseType) -> List[Dict[str, Any]]:
@@ -347,44 +400,44 @@ def check_for_common_headings(text: str) -> List[str]:
 def classify_section_heading(heading_text: str, lease_type: LeaseType) -> str:
     """
     Classifies a section heading based on keywords into a known clause category.
-    Returns the ClauseCategory.value string if a match is found, else 'miscellaneous'.
+    Returns the clause category string if a match is found, else 'miscellaneous'.
     """
     heading = heading_text.lower()
 
     section_map = {
-        ClauseCategory.PREMISES.value: ["premises", "demised", "leased space", "property"],
-        ClauseCategory.TERM.value: ["term", "duration", "commencement", "expiration"],
-        ClauseCategory.RENT.value: ["rent", "payment", "base rent", "minimum rent", "annual rent"],
-        ClauseCategory.MAINTENANCE.value: ["maintenance", "repair", "condition"],
-        ClauseCategory.USE.value: ["use", "purpose", "permitted", "conduct"],
-        ClauseCategory.ASSIGNMENT.value: ["assignment", "sublet", "transfer"],
-        ClauseCategory.INSURANCE.value: ["insurance", "liability", "indemnity"],
-        ClauseCategory.CASUALTY.value: ["casualty", "damage", "destruction"],
-        ClauseCategory.DEFAULT.value: ["default", "remedies", "breach"],
-        ClauseCategory.ENTRY.value: ["entry", "access"],
-        ClauseCategory.NOTICES.value: ["notice", "notices"],
-        ClauseCategory.QUIET_ENJOYMENT.value: ["quiet enjoyment", "peaceful"],
-        ClauseCategory.TERMINATION.value: ["termination", "cancel", "early termination"],
-        ClauseCategory.UTILITIES.value: ["utilities", "electric", "water", "gas"],
+        "premises": ["premises", "demised", "leased space", "property"],
+        "term": ["term", "duration", "commencement", "expiration"],
+        "rent": ["rent", "payment", "base rent", "minimum rent", "annual rent"],
+        "maintenance": ["maintenance", "repair", "condition"],
+        "use": ["use", "purpose", "permitted", "conduct"],
+        "assignment": ["assignment", "sublet", "transfer"],
+        "insurance": ["insurance", "liability", "indemnity"],
+        "casualty": ["casualty", "damage", "destruction"],
+        "default": ["default", "remedies", "breach"],
+        "entry": ["entry", "access"],
+        "notices": ["notice", "notices"],
+        "quiet_enjoyment": ["quiet enjoyment", "peaceful"],
+        "termination": ["termination", "cancel", "early termination"],
+        "utilities": ["utilities", "electric", "water", "gas"],
     }
 
     if lease_type == LeaseType.RETAIL:
         section_map.update({
-            ClauseCategory.CO_TENANCY.value: ["co-tenancy", "cotenancy"],
-            ClauseCategory.PERCENTAGE_RENT.value: ["percentage", "overage", "gross sales"],
-            ClauseCategory.OPERATING_HOURS.value: ["hours", "operation"],
-            ClauseCategory.COMMON_AREA.value: ["cam", "common area", "shared area"]
+            "co_tenancy": ["co-tenancy", "cotenancy"],
+            "percentage_rent": ["percentage", "overage", "gross sales"],
+            "operating_hours": ["hours", "operation"],
+            "common_area": ["cam", "common area", "shared area"]
         })
     elif lease_type == LeaseType.OFFICE:
         section_map.update({
-            ClauseCategory.BUILDING_SERVICES.value: ["building services", "janitorial", "hvac"],
-            ClauseCategory.TENANT_IMPROVEMENTS.value: ["tenant improvements", "improvements", "build-out"],
-            ClauseCategory.OPERATING_EXPENSES.value: ["opex", "operating expenses"]
+            "building_services": ["building services", "janitorial", "hvac"],
+            "tenant_improvements": ["tenant improvements", "improvements", "build-out"],
+            "operating_expenses": ["opex", "operating expenses"]
         })
     elif lease_type == LeaseType.INDUSTRIAL:
         section_map.update({
-            ClauseCategory.ENVIRONMENTAL.value: ["environmental", "compliance"],
-            ClauseCategory.HAZARDOUS_MATERIALS.value: ["hazardous", "hazmat", "hazardous materials"]
+            "environmental": ["environmental", "compliance"],
+            "hazardous_materials": ["hazardous", "hazmat", "hazardous materials"]
         })
 
     for category, keywords in section_map.items():

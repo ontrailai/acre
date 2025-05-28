@@ -1,0 +1,20 @@
+[
+  {
+    "clause_key": "parties_data",
+    "confidence": 0.8,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "premises_data",
+    "confidence": 0.8,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_data",
+    "confidence": 0.8,
+    "matched_heuristics": [],
+    "skipped": false
+  }
+]

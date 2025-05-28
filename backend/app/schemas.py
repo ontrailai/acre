@@ -40,6 +40,7 @@ class ProcessResponse(BaseModel):
     missing_clauses: List[str] = []
     processing_time: float
     raw_clauses: Optional[Dict[str, Any]] = None  # For frontend access to structured data
+    enhanced_results: Optional[Dict[str, Any]] = None  # Results from enhanced extraction system
     
 class FeedbackRequest(BaseModel):
     lease_id: str
@@ -74,6 +75,9 @@ class ClauseExtraction(BaseModel):
     structured_data: Optional[Dict[str, Any]] = {}
     needs_review: Optional[bool] = False
     field_id: Optional[str] = None  # Unique identifier for this field/clause
+    inferred_from_section: Optional[str] = None  # Track when clause is inferred from different section
+    section_hierarchy: Optional[List[str]] = None  # Full section hierarchy path
+    detection_method: Optional[str] = None  # How the clause was detected/reconciled
     
 class LeaseSummary(BaseModel):
     lease_id: str

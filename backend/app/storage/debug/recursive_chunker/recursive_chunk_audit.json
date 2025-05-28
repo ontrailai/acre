@@ -1,0 +1,545 @@
+[
+  {
+    "chunk_id": "R-001",
+    "heading": "0.00\nSection 1.4",
+    "parent_heading": "Document Root",
+    "clause_category": "rent",
+    "confidence": 0.95,
+    "risk_score": "medium",
+    "risk_flags": [
+      {
+        "risk_level": "medium",
+        "description": "Potential financial risk due to additional rent charges which vary monthly and late fees."
+      },
+      {
+        "risk_level": "low",
+        "description": "Risk of penalty fees for dishonored payments increasing after the first occurrence."
+      }
+    ],
+    "key_values": {
+      "monthly_rent": "$3,650.00",
+      "additional_rent_includes": "utilities, services, insufficient funds fee, late fee",
+      "late_fee": "$150.00",
+      "insufficient_funds_fee_first": "$25",
+      "insufficient_funds_fee_subsequent": "$35",
+      "payment_methods": [
+        "Check",
+        "money order",
+        "Zelle",
+        "ACH/direct deposit",
+        "online payment service"
+      ],
+      "due_dates": "1st day of each month"
+    },
+    "page_range": "1-5",
+    "gpt_enriched": true,
+    "justification": "The classification as 'rent' is based on the extensive details provided about monthly rent, additional rent, and payment methods. Key values such as rent amounts, fees, and payment methods are directly extracted from the clause. The identified risks are based on the potential financial implications of variable additional rent and penalties for late or dishonored payments. Note: Content was truncated due to token limits",
+    "content_preview": "0.00\nSection 1.4\n$\n Monthly Rent for full first month of the Term due at signing (See \n below)\n3,650.00\nSection 1.4\n1.1.3. Total Due Upfront\n$\n due at signing. 8,300.00\n$\n due at Start Date. 0.00\n1.2...."
+  },
+  {
+    "chunk_id": "R-002",
+    "heading": "Section 2.9.1",
+    "parent_heading": "Document Root",
+    "clause_category": "security_deposit",
+    "confidence": 0.95,
+    "risk_score": "medium",
+    "risk_flags": [
+      {
+        "risk_level": "medium",
+        "description": "If the Deposit Claims exceed $125, the Landlord must provide documentation, which could lead to disputes over the validity or accuracy of the charges."
+      },
+      {
+        "risk_level": "low",
+        "description": "Tenant must provide a forwarding address to receive the security deposit return, failure to do so could result in delayed or non-receipt of the deposit."
+      }
+    ],
+    "key_values": {
+      "return_period": "21 days",
+      "monetary_threshold_for_documentation": "$125"
+    },
+    "page_range": "5-11",
+    "gpt_enriched": true,
+    "justification": "The clause was classified as 'security_deposit' based on its primary focus on the conditions and procedures related to the handling, return, and potential claims against the tenant's security deposit. Key values such as the return period of 21 days and the $125 threshold for providing documentation of charges were directly extracted from the text. Risks identified include potential disputes over charges and issues with the return of the deposit if the tenant fails to provide a new address. Note: Content was truncated due to token limits",
+    "content_preview": "Section 2.9.1\nLease, including past due Rent; and/or (ii) pay for costs incurred by Landlord to repair damages to the Property caused \nby Tenant, any Occupants, or any guests of Tenant or any Occupant..."
+  },
+  {
+    "chunk_id": "R-003",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "pet_policy",
+    "confidence": 0.95,
+    "risk_score": "medium",
+    "risk_flags": [
+      {
+        "risk_level": "medium",
+        "description": "Restricts the type and number of pets allowed, which could lead to disputes if additional or different pets are brought onto the property."
+      }
+    ],
+    "key_values": {
+      "allowed_pets": "Two cats"
+    },
+    "page_range": "11-11",
+    "gpt_enriched": true,
+    "justification": "The clause explicitly grants permission for specific pets (two cats), classifying it under 'pet_policy'. The risk identified stems from the restriction on the type and number of pets, which is a common source of tenant-landlord disputes. The confidence level is high due to the clear language used in the clause.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-2\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-3\nJeffrey Altman\n01-29-2025 1..."
+  },
+  {
+    "chunk_id": "R-004",
+    "heading": "B. RULES, REGULATIONS, AND AGREEMENTS",
+    "parent_heading": "Document Root",
+    "clause_category": "pet_policy",
+    "confidence": 0.95,
+    "risk_score": "high",
+    "risk_flags": [
+      {
+        "risk_level": "medium",
+        "description": "Potential for additional costs and liabilities due to pet-related damages and required indemnifications."
+      },
+      {
+        "risk_level": "high",
+        "description": "Strict compliance required with pet rules, with significant consequences including eviction for non-compliance."
+      }
+    ],
+    "key_values": {
+      "time_to_comply": "48 hours",
+      "damage_responsibility": "Tenant is responsible for any damage caused by pets",
+      "indemnity_requirement": "Tenant will indemnify Landlord from liabilities related to pets"
+    },
+    "page_range": "11-12",
+    "gpt_enriched": true,
+    "justification": "The clause was classified as 'pet_policy' due to its comprehensive coverage of rules and regulations governing the presence and management of pets within the leased property. Key values such as the tenant's responsibilities for damages and indemnity obligations were directly extracted from the text. Risks identified include potential costs from damages and strict enforcement of rules, which could lead to eviction for non-compliance.",
+    "content_preview": "B. RULES, REGULATIONS, AND AGREEMENTS\nThe following pet rules apply:\n1. Tenant represents that each Pet is properly licensed and vaccinated as required by applicable law, and Tenant agrees \nto keep al..."
+  },
+  {
+    "chunk_id": "R-005",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "parking",
+    "confidence": 0.95,
+    "risk_score": "medium",
+    "risk_flags": [
+      {
+        "risk_level": "medium",
+        "description": "Potential for additional costs due to charges for security cards and vehicle tags or decals."
+      },
+      {
+        "risk_level": "low",
+        "description": "Requirement for vehicle registration and compliance with parking controls could pose minor administrative burdens."
+      }
+    ],
+    "key_values": {
+      "number_of_vehicles_allowed": 3,
+      "registration_requirements": [
+        "vehicle license plate number",
+        "owner's name",
+        "contact information"
+      ],
+      "security_measures": [
+        "vehicle tags or decals",
+        "access gates with security cards or access codes"
+      ]
+    },
+    "page_range": "12-13",
+    "gpt_enriched": true,
+    "justification": "The clause was classified as 'parking' due to its primary focus on the conditions and regulations regarding the parking facilities provided to the tenant. Key values such as the number of vehicles allowed and specific registration requirements were directly extracted from the text. Risks were identified based on potential costs and administrative requirements mentioned.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-6\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-12\nJeffrey Altman\n01-29-2025 ..."
+  },
+  {
+    "chunk_id": "R-006",
+    "heading": "NATURE OF PARKING RIGHTS / PARKING RULES AND REGULATIONS",
+    "parent_heading": "Document Root",
+    "clause_category": "parking",
+    "confidence": 0.95,
+    "risk_score": "medium",
+    "risk_flags": [
+      {
+        "risk_level": "medium",
+        "description": "Tenant may be liable for costs associated with towing or removal of improperly parked or inoperable vehicles."
+      },
+      {
+        "risk_level": "low",
+        "description": "Lack of security in the parking area could lead to potential loss or damage without recourse against the Landlord."
+      }
+    ],
+    "key_values": {
+      "designated_parking_spaces": "Garage and parking spaces in front of unit",
+      "prohibited_vehicles": [
+        "Commercial vehicles",
+        "recreational vehicles",
+        "boats or trailers",
+        "other oversized vehicles"
+      ],
+      "vehicle_removal_conditions": [
+        "parked outside the parking area",
+        "parked in a fire lane",
+        "blocking a fire hydrant",
+        "refuse container",
+        "another vehicle",
+        "sidewalk",
+        "lawn",
+        "illegally or improperly parked"
+      ],
+      "vehicle_removal_expense": "vehicle owner\u2019s expense",
+      "emergency_repairs_only": true,
+      "vehicle_washing_restrictions": "Only in designated areas or not allowed if no designated area"
+    },
+    "page_range": "13-13",
+    "gpt_enriched": true,
+    "justification": "The classification as 'parking' is based on the explicit focus of the clause on parking rights and regulations. Key values were directly extracted from the clause, such as designated parking spaces and conditions under which vehicles may be removed. Risks were identified based on potential financial liabilities and security issues explicitly mentioned in the clause.",
+    "content_preview": "NATURE OF PARKING RIGHTS\nTenant has the right to park only in the following reserved space(s): \n (\nGarage and parking spaces in front of unit.\n). Tenant may not park in any spaces in the parking area ..."
+  },
+  {
+    "chunk_id": "R-007",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "signature",
+    "confidence": 0.95,
+    "risk_score": "low",
+    "risk_flags": [
+      {
+        "risk_level": "low",
+        "description": "Potential discrepancies in signature timestamps could lead to disputes regarding the exact time of agreement."
+      }
+    ],
+    "key_values": {
+      "signatories": [
+        "Deborah Hample",
+        "Riley Pasha",
+        "Jeffrey Altman"
+      ],
+      "signature_dates": [
+        "01-28-2025 04:13:34 PM PST",
+        "01-28-2025 11:04:38 AM PST",
+        "01-29-2025 12:44:18 AM UTC"
+      ]
+    },
+    "page_range": "13-14",
+    "gpt_enriched": true,
+    "justification": "The clause clearly pertains to the signatures of the tenant and landlord, which categorizes it under 'signature'. Key values extracted include the names of the signatories and their respective signature dates and times, directly mentioned in the text. The risk identified is based on the different timestamps which could potentially lead to disputes about the timing of agreement.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-17\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-23\nJeffrey Altman\n01-29-2025..."
+  },
+  {
+    "chunk_id": "R-008",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE / ACTIONS OF RESIDENTS / USE OF PREMISES AND COMMON AREAS",
+    "parent_heading": "Document Root",
+    "clause_category": "use",
+    "confidence": 0.95,
+    "risk_score": "medium",
+    "risk_flags": [
+      {
+        "risk_level": "medium",
+        "description": "Restrictions on tenant's use of premises and common areas could lead to potential disputes or penalties if not adhered to."
+      },
+      {
+        "risk_level": "low",
+        "description": "Prohibition of certain items and activities due to fire risk and property damage concerns."
+      }
+    ],
+    "key_values": {
+      "prohibited_actions": [
+        "fastening items to fixtures, appliances, or property surfaces",
+        "altering or storing personal belongings on balconies or porches",
+        "hanging laundry or other items from windows, balconies, or porches",
+        "bringing flammable chemicals onto property",
+        "using wax candles on property",
+        "cooking or barbecuing on porches or within 15 feet of buildings",
+        "placing signs or advertisements visible outside the property",
+        "adding or changing locks without landlord's consent"
+      ]
+    },
+    "page_range": "14-14",
+    "gpt_enriched": true,
+    "justification": "The classification as a 'use' clause is based on the explicit restrictions and permissions related to the tenant's use of the premises and common areas. The key values extracted directly reflect the specific prohibitions and requirements stated in the clause. The risk flags are identified based on potential legal and safety implications of the restrictions imposed on the tenant.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-24\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-30\nJeffrey Altman\n01-29-2025..."
+  },
+  {
+    "chunk_id": "R-009",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE / LEAD WARNING STATEMENT",
+    "parent_heading": "Document Root",
+    "clause_category": "lead_disclosure",
+    "confidence": 0.95,
+    "risk_score": "high",
+    "risk_flags": [
+      {
+        "risk_level": "high",
+        "description": "Potential health hazards due to lead-based paint, especially harmful to young children and pregnant women."
+      },
+      {
+        "risk_level": "medium",
+        "description": "Legal risks associated with non-compliance of lead-based paint disclosure requirements."
+      }
+    ],
+    "key_values": {
+      "building_age": "before 1978",
+      "disclosure_requirements": "presence of known lead-based paint and/or lead-based paint hazards must be disclosed",
+      "pamphlet": "Protect Your Family from Lead in Your Home"
+    },
+    "page_range": "14-15",
+    "gpt_enriched": true,
+    "justification": "The clause was classified as 'lead_disclosure' due to explicit mention of lead-based paint hazards and required disclosures. Key values such as the age of the building, specific disclosure requirements, and the pamphlet title were directly extracted from the text. Risks were identified based on the potential health hazards mentioned and the legal implications of non-disclosure.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-34\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-37\nJeffrey Altman\n01-29-2025..."
+  },
+  {
+    "chunk_id": "R-010",
+    "heading": "CERTIFICATE OF ACCURACY / TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "signature",
+    "confidence": 0.95,
+    "risk_score": "low",
+    "risk_flags": [
+      {
+        "risk_level": "low",
+        "description": "Potential discrepancies in signatures or dates could lead to disputes regarding the accuracy and acknowledgment of the lease terms."
+      }
+    ],
+    "key_values": {
+      "signatures": [
+        "Deborah Hample",
+        "Riley Pasha",
+        "Jeffrey Altman"
+      ],
+      "dates": [
+        "01-28-2025 04:13:34 PM PST",
+        "01-28-2025 11:04:38 AM PST",
+        "01-29-2025 12:44:18 AM UTC"
+      ]
+    },
+    "page_range": "15-15",
+    "gpt_enriched": true,
+    "justification": "The clause is classified as 'signature' because it primarily involves the signatures of the tenant and landlord, certifying the accuracy of the lease information. Key values extracted include the names of the signatories and the exact timestamps of their signatures. The risk identified is low, concerning potential disputes over signature discrepancies.",
+    "content_preview": "CERTIFICATE OF ACCURACY\nIN WITNESS WHEREOF, the following parties have reviewed the information above and certify, to the best of their \nknowledge, that the information they have provided is true and ..."
+  },
+  {
+    "chunk_id": "R-011",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "asbestos_disclosure",
+    "confidence": 0.95,
+    "risk_score": "high",
+    "risk_flags": [
+      {
+        "risk_level": "high",
+        "description": "Potential health risks due to asbestos exposure if disturbed."
+      },
+      {
+        "risk_level": "medium",
+        "description": "Landlord disclaims knowledge of asbestos, potentially shifting liability to tenant."
+      }
+    ],
+    "key_values": {
+      "asbestos_warning_date": "prior to 1981",
+      "epa_determination": "asbestos materials do not pose a health risk if undisturbed",
+      "federal_law_requirement": "reasonable precautions to minimize damage or disturbance"
+    },
+    "page_range": "15-15",
+    "gpt_enriched": true,
+    "justification": "The clause is classified as 'asbestos_disclosure' due to its explicit focus on the presence and handling of asbestos in the building. Key values such as the EPA's determination and federal law requirements are directly extracted from the text. Risks are identified based on the potential health hazards of asbestos and the landlord's disclaimer of knowledge about asbestos presence.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-56\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-50\nJeffrey Altman\n01-29-2025..."
+  },
+  {
+    "chunk_id": "R-012",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "signature",
+    "confidence": 0.95,
+    "risk_score": "low",
+    "risk_flags": [
+      {
+        "risk_level": "low",
+        "description": "The clause includes signatures and dates which are critical for the validity of the lease but does not indicate any high-risk issues directly."
+      }
+    ],
+    "key_values": {
+      "signatures": [
+        "Deborah Hample",
+        "Riley Pasha",
+        "Jeffrey Altman"
+      ],
+      "signature_dates": [
+        "01-28-2025 04:13:34 PM PST",
+        "01-28-2025 11:04:38 AM PST",
+        "01-29-2025 12:44:18 AM UTC"
+      ]
+    },
+    "page_range": "15-16",
+    "gpt_enriched": true,
+    "justification": "The clause clearly falls under the category of 'signature' as it primarily involves the signatures of the tenant and landlord, which are essential for the execution of the lease agreement. The risk is considered low because signatures are a standard requirement and typically do not involve high risk unless forgery or duress is suspected, which is not indicated here. The key values extracted are directly from the text, listing the names and the exact times of the signatures.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-64\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-59\nJeffrey Altman\n01-29-2025..."
+  },
+  {
+    "chunk_id": "R-013",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "signature",
+    "confidence": 0.95,
+    "risk_score": "low",
+    "risk_flags": [
+      {
+        "risk_level": "low",
+        "description": "Signatures are dated with different times, which could indicate delays or discrepancies in the signing process."
+      }
+    ],
+    "key_values": {
+      "signatories": [
+        "Deborah Hample",
+        "Riley Pasha",
+        "Jeffrey Altman"
+      ],
+      "dates": [
+        "01-28-2025 04:13:34 PM PST",
+        "01-28-2025 11:04:38 AM PST",
+        "01-29-2025 12:44:18 AM UTC"
+      ]
+    },
+    "page_range": "16-16",
+    "gpt_enriched": true,
+    "justification": "The clause was classified as 'signature' due to the explicit mention of tenant and landlord signatures along with their names and timestamps. Key values extracted include the names of the signatories and the exact dates and times of the signatures. The risk of discrepancies in signing times was noted as a low-level risk.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-73\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-71\nJeffrey Altman\n01-29-2025..."
+  },
+  {
+    "chunk_id": "R-014",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "signature",
+    "confidence": 0.95,
+    "risk_score": "low",
+    "risk_flags": [
+      {
+        "risk_level": "low",
+        "description": "Signatures are dated with specific timestamps, which could lead to disputes if the timing of signing is questioned."
+      }
+    ],
+    "key_values": {
+      "signatures": [
+        {
+          "name": "Deborah Hample",
+          "timestamp": "01-28-2025 04:13:34 PM PST"
+        },
+        {
+          "name": "Riley Pasha",
+          "timestamp": "01-28-2025 11:04:38 AM PST"
+        },
+        {
+          "name": "Jeffrey Altman",
+          "timestamp": "01-29-2025 12:44:18 AM UTC"
+        }
+      ],
+      "death_in_property_notice": "No death reported."
+    },
+    "page_range": "16-16",
+    "gpt_enriched": true,
+    "justification": "The clause primarily deals with the signatures of the tenant and landlord, which are essential for the execution of the lease agreement. The timestamps and names are explicitly mentioned, making it clear who signed and when. Additionally, the clause includes a specific notice about death in the property, which is a secondary aspect of this node but important for tenant rights.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-86\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-83\nJeffrey Altman\n01-29-2025..."
+  },
+  {
+    "chunk_id": "R-015",
+    "heading": "TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "signature",
+    "confidence": 0.95,
+    "risk_score": "low",
+    "risk_flags": [
+      {
+        "risk_level": "low",
+        "description": "Signatures are dated with specific timestamps, which could lead to disputes if the timing of signing is questioned."
+      }
+    ],
+    "key_values": {
+      "signatories": [
+        "Deborah Hample",
+        "Riley Pasha",
+        "Jeffrey Altman"
+      ],
+      "dates": [
+        "01-28-2025 04:13:34 PM PST",
+        "01-28-2025 11:04:38 AM PST",
+        "01-29-2025 12:44:18 AM UTC"
+      ]
+    },
+    "page_range": "16-16",
+    "gpt_enriched": true,
+    "justification": "The clause clearly pertains to the signatures of the tenant and landlord, which categorizes it under 'signature'. The risk identified is based on the specific timestamps of the signatures, which could be a point of contention if the exact timing of agreement becomes relevant. The key values extracted are directly mentioned in the text, including the names of the signatories and the exact dates and times of signing.",
+    "content_preview": "TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 04:13:34 PM PST - 3-89\nRiley Pasha\n01-28-2025 11:04:38 AM PST - 2-92\nJeffrey Altman\n01-29-2025..."
+  },
+  {
+    "chunk_id": "R-016",
+    "heading": "ACKNOWLEDGMENT / TENANT SIGNATURE / LANDLORD SIGNATURE / TENANT SIGNATURE / LANDLORD SIGNATURE / BED BUG APPEARANCE",
+    "parent_heading": "Document Root",
+    "clause_category": "signature_acknowledgment",
+    "confidence": 0.95,
+    "risk_score": "low",
+    "risk_flags": [
+      {
+        "risk_level": "low",
+        "description": "The clause includes multiple signatures and timestamps which could lead to disputes if signatures are claimed to be forged or incorrect."
+      }
+    ],
+    "key_values": {
+      "signatures": [
+        "Deborah Hample",
+        "Riley Pasha",
+        "Jeffrey Altman"
+      ],
+      "dates": [
+        "01-28-2025 04:13:34 PM PST",
+        "01-28-2025 11:04:38 AM PST",
+        "01-29-2025 12:44:18 AM UTC"
+      ]
+    },
+    "page_range": "16-17",
+    "gpt_enriched": true,
+    "justification": "The clause was classified as 'signature_acknowledgment' due to the presence of multiple signatures and explicit acknowledgment language. Key values such as names and dates were directly extracted from the text. The risk of signature disputes is considered low but notable due to the formal nature of the document.",
+    "content_preview": "ACKNOWLEDGMENT\nIN WITNESS WHEREOF, the following parties have reviewed the information above.\nTENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nLANDLORD SIGNATURE\nJeffrey Altman \nDeb\u01c4ah Hample\n01-28-2025 ..."
+  },
+  {
+    "chunk_id": "R-017",
+    "heading": "LIFE CYCLE AND REPRODUCTION / BED BUG BITES",
+    "parent_heading": "Document Root",
+    "clause_category": "health_and_safety",
+    "confidence": 0.95,
+    "risk_score": "medium",
+    "risk_flags": [
+      {
+        "risk_level": "medium",
+        "description": "Potential health risks due to bed bug bites and possible allergic reactions."
+      },
+      {
+        "risk_level": "medium",
+        "description": "Risk of not noticing bed bug infestations early due to varied human reactions to bites."
+      }
+    ],
+    "key_values": {
+      "lifespan": "10 months",
+      "egg_laying_rate": "1 to 5 eggs per day",
+      "maturity_duration": "21 days",
+      "survival_without_feeding": "months"
+    },
+    "page_range": "17-17",
+    "gpt_enriched": true,
+    "justification": "The clause was classified under 'health_and_safety' due to its focus on bed bug life cycles, reproduction, and the health implications of their bites. Key values such as lifespan, egg laying rate, maturity duration, and survival duration were directly extracted from the text. Risks were identified based on the potential health impacts and the difficulty in detecting infestations.",
+    "content_preview": "LIFE CYCLE AND REPRODUCTION\nAn average bed bug lives for about 10 months. Female bed bugs lay one to five eggs per day. Bed bugs grow to full \nadulthood in about 21 days.\nBed bugs can survive for mont..."
+  },
+  {
+    "chunk_id": "R-018",
+    "heading": "CERTIFICATE OF ACCURACY / TENANT SIGNATURE / LANDLORD SIGNATURE",
+    "parent_heading": "Document Root",
+    "clause_category": "environmental_compliance",
+    "confidence": 0.95,
+    "risk_score": "high",
+    "risk_flags": [
+      {
+        "risk_level": "high",
+        "description": "Potential legal and health risks due to presence of lead-based paint, requiring strict adherence to disclosure and remediation guidelines."
+      }
+    ],
+    "key_values": {
+      "lead_paint_disclosure_requirements": "Sellers and landlords must disclose known lead-based paint hazards and include specific warning statements in contracts and leases.",
+      "lead_paint_testing_period": "Buyers have up to 10 days to check for lead-based paint.",
+      "lead_safe_certification_requirements": "Renovations, repairs, or painting in pre-1978 homes must follow EPA lead-safe certified practices."
+    },
+    "page_range": "17-25",
+    "gpt_enriched": true,
+    "justification": "The clause falls under environmental compliance due to its focus on lead-based paint regulations and safety measures. Key values were directly extracted from the text, which specifies legal requirements for disclosure and safety practices. The high risk is identified due to the severe health implications and legal obligations associated with lead-based paint. Note: Content was truncated due to token limits",
+    "content_preview": "CERTIFICATE OF ACCURACY\nIN WITNESS WHEREOF, Tenant and Landlord have executed this Notice as of the date of the last signature below. TENANT SIGNATURE\nDeborah Hample \nRiley Pasha \nDeb\u01c4ah Hample\n01-28-..."
+  }
+]

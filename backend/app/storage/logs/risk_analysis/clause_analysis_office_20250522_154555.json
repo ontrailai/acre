@@ -1,0 +1,82 @@
+[
+  {
+    "clause_key": "term_data",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "rent_data",
+    "confidence": 0.95,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "facts_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "possession_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "insurance_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "entry_data",
+    "confidence": 0.85,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "default_remedies_data",
+    "confidence": 0.9,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "tenant_signature_data",
+    "confidence": 0.95,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "landlord_signature_data",
+    "confidence": 0.95,
+    "matched_heuristics": [],
+    "skipped": false
+  },
+  {
+    "clause_key": "broker_information_data",
+    "confidence": 0.9,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  },
+  {
+    "clause_key": "agent_information_data",
+    "confidence": 0.85,
+    "matched_heuristics": [
+      "gpt_risk_tags"
+    ],
+    "skipped": false
+  }
+]

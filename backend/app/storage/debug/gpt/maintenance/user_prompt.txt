@@ -1,0 +1,8 @@
+Extract key information from this lease clause:
+
+CLAUSE TEXT:
+Landlord will provide any general maintenance associated with utilities services that it 
+supplies.  
+Landlord will provide grounds maintenance.
+
+Return JSON with the most important facts from this clause. Use descriptive field names.

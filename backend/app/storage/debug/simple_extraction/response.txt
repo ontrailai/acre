@@ -1,0 +1,11 @@
+{
+  "landlord": null,
+  "tenant": null, 
+  "address": null,
+  "square_feet": null,
+  "commencement_date": "Feb 1, 20",
+  "expiration_date": null,
+  "term_months": null,
+  "monthly_rent": null,
+  "permitted_use": null
+}
